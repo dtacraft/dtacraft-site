@@ -8,108 +8,232 @@
 
   <title>Privacy Policy – Deadhand Protocol | DTA Craft</title>
   <meta name="description" content="Privacy Policy for Deadhand Protocol (offline single-player). No personal data collected." />
+  <link rel="canonical" href="https://dtacraft.com/deadhand/privacy" />
+  <link rel="icon" href="/assets/favicon.png" type="image/png" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Privacy Policy – Deadhand Protocol" />
   <meta property="og:description" content="Deadhand Protocol is an offline single-player game. We do not collect, store, or transmit personal data." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dtacraft.com/deadhand/privacy" />
   <meta property="og:site_name" content="DTA Craft" />
+  <meta property="og:image" content="https://dtacraft.com/deadhand-protocol/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Privacy Policy – Deadhand Protocol" />
+  <meta name="twitter:description" content="Deadhand Protocol is an offline single-player game. No personal data collected." />
+  <meta name="twitter:image" content="https://dtacraft.com/deadhand-protocol/og-image.jpg" />
 
   <style>
     :root{
       --bg:#070a0f;
-      --panel:#0b0f16;
-      --text:#e7edf7;
-      --muted:#a9b4c4;
-      --line:#1a2230;
-      --accent:#cfd8e6;
+      --bg2:#0b0f14;
+      --panel:#0e141c;
+      --panel2:#0b1017;
+
+      --text:#e6edf6;
+      --muted:#a3b0c2;
+      --line:rgba(230,237,246,.12);
+
+      --ember:#c1773a;
+      --amber:#f0a010;
+
+      --btn:#2b1d12;
+      --btn2:#3a2617;
+
+      --shadow: 0 14px 40px rgba(0,0,0,.25);
+      --radius: 18px;
+      --radius2: 14px;
+      --max: 920px;
+
+      --focus: 0 0 0 3px rgba(240,160,16,.25);
     }
+
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 700px at 50% -10%, #0f1624 0%, var(--bg) 55%);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
       line-height:1.6;
+      background:
+        radial-gradient(1000px 520px at 20% 5%, rgba(193,119,58,.10), transparent 58%),
+        radial-gradient(900px 520px at 80% 0%, rgba(143,161,181,.09), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
     }
-    main{
-      max-width: 880px;
-      margin: 0 auto;
-      padding: 48px 20px 64px;
+
+    a{color:inherit; text-decoration:none}
+    a:hover{opacity:.92}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 64px}
+
+    /* Top bar */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:rgba(14,20,28,.72);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
     }
-    header{
-      margin-bottom: 22px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--line);
+    .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.2px}
+    .mark{
+      width:34px; height:34px;
+      border-radius:12px;
+      border:1px solid rgba(230,237,246,.10);
+      background:rgba(11,16,23,.60);
+      display:grid; place-items:center;
+      overflow:hidden;
+    }
+    .mark img{width:26px; height:26px; object-fit:contain; display:block}
+    .brand small{display:block; font-size:12px; color:var(--muted); font-weight:800}
+
+    .navRight{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:11px 13px; border-radius:var(--radius2);
+      border:1px solid var(--line);
+      background:rgba(14,20,28,.68);
+      color:var(--amber);
+      font-weight:900; font-size:14px;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease, opacity .12s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(193,119,58,.40)}
+    .btn:focus{outline:none; box-shadow: var(--focus)}
+    .btn:focus-visible{outline:none; box-shadow: var(--focus)}
+
+    .btn.primary{
+      background: var(--btn);
+      border-color: rgba(193,119,58,.78);
+      color: var(--amber);
+    }
+    .btn.primary:hover{
+      background: var(--btn2);
+      border-color: rgba(240,160,16,.72);
+    }
+
+    /* Page */
+    header.page{
+      margin-top:18px;
+      padding:18px 4px 10px;
     }
     h1{
-      margin:0 0 8px;
-      font-size: 28px;
-      letter-spacing: 0.2px;
+      margin:0 0 6px;
+      font-size:28px;
+      letter-spacing:-.2px;
     }
     .meta{
       color:var(--muted);
-      font-size: 14px;
+      font-size:13px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
     }
+    .pill{
+      font-size:12px;
+      font-weight:900;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(11,16,23,.70);
+      color: rgba(230,237,246,.86);
+    }
+
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 22px 20px;
-      margin-top: 18px;
+      margin-top:14px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background: rgba(14,20,28,.72);
+      box-shadow: var(--shadow);
+      padding:18px 16px;
     }
-    h2{
-      font-size: 18px;
-      margin: 22px 0 10px;
-      color: var(--accent);
+    .card h2{
+      margin:18px 0 8px;
+      font-size:16px;
+      letter-spacing:.2px;
+      color: rgba(230,237,246,.92);
     }
-    h2:first-child{ margin-top: 0; }
-    p{ margin: 10px 0; color: var(--text); }
-    ul{ margin: 10px 0 10px 20px; color: var(--text); }
-    li{ margin: 6px 0; }
-    hr{
+    .card h2:first-child{margin-top:0}
+    .card p{margin:10px 0; color: rgba(230,237,246,.88)}
+    .card ul{margin:10px 0 10px 20px; color: rgba(230,237,246,.88)}
+    .card li{margin:6px 0}
+    .divider{
       border:0;
       border-top:1px solid var(--line);
-      margin: 18px 0;
+      margin:16px 0;
     }
-    .note{
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 14px;
+
+    .topActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
     }
-    a{ color: var(--accent); text-decoration: underline; }
-    .lang{
-      display:inline-block;
-      margin-top: 12px;
-      padding: 6px 10px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: .3px;
-    }
+
     footer{
-      margin-top: 26px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      font-size:12px;
+    }
+    footer a{color:var(--muted); text-decoration:underline; text-underline-offset:3px}
+    footer a:hover{color:var(--text)}
+
+    @media (max-width: 720px){
+      .nav{align-items:flex-start; flex-direction:column}
+      .navRight{justify-content:flex-start}
     }
   </style>
 </head>
 
 <body>
-  <main>
-    <header>
+  <div class="wrap">
+    <!-- TOP NAV (requested: Home + necessary links) -->
+    <div class="nav">
+      <div class="brand">
+        <div class="mark" aria-hidden="true"><img src="/assets/logo.png" alt="" /></div>
+        <div>
+          <div>DTA Craft</div>
+          <small>Deadhand Protocol · Privacy</small>
+        </div>
+      </div>
+
+      <div class="navRight" aria-label="Quick links">
+        <a class="btn" href="/">Home</a>
+        <a class="btn" href="/deadhand-protocol/">Deadhand Protocol</a>
+        <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.dtacraft.deadhandprotocol" target="_blank" rel="noopener">Google Play</a>
+        <a class="btn" href="mailto:contact@dtacraft.com">Contact</a>
+      </div>
+    </div>
+
+    <header class="page">
       <h1>Privacy Policy – Deadhand Protocol</h1>
       <div class="meta">
-        <div><strong>Effective Date:</strong> 31/12/2025</div>
-        <div><strong>Publisher:</strong> DTA Craft</div>
-        <span class="lang">EN + VI</span>
+        <span><strong>Effective Date:</strong> 31/12/2025</span>
+        <span class="pill">Offline</span>
+        <span class="pill">No analytics</span>
+        <span class="pill">No ads</span>
+      </div>
+
+      <div class="topActions">
+        <a class="btn" href="#en">English</a>
+        <a class="btn" href="#vi">Tiếng Việt</a>
       </div>
     </header>
 
-    <section class="card" aria-label="English Privacy Policy">
+    <!-- EN -->
+    <section id="en" class="card" aria-label="English Privacy Policy">
       <h2>Overview</h2>
       <p>
         Deadhand Protocol (“the Game”) is developed and published by <strong>DTA Craft</strong> (“we”, “us”).
@@ -176,7 +300,8 @@
       </p>
     </section>
 
-    <section class="card" aria-label="Vietnamese Privacy Policy">
+    <!-- VI -->
+    <section id="vi" class="card" aria-label="Vietnamese Privacy Policy">
       <h2>Tổng quan</h2>
       <p>
         Deadhand Protocol (“Trò chơi”) được phát triển và phát hành bởi <strong>DTA Craft</strong> (“chúng tôi”).
@@ -242,15 +367,20 @@
         Chính sách này áp dụng cho <strong>Trò chơi</strong>. Khi bạn truy cập trang policy trên <strong>dtacraft.com</strong>,
         hệ thống có thể tạo log máy chủ tiêu chuẩn (phục vụ bảo mật/hiệu năng). Các log này không dùng để theo dõi gameplay và không liên kết với hoạt động trong game.
       </p>
-
-      <p class="note">
-        Gợi ý: đặt file theo đường dẫn ổn định (ví dụ <code>/deadhand-protocol/privacy-policy.html</code>) để dán vào Google Play Console.
-      </p>
     </section>
 
     <footer>
-      © DTA Craft. Deadhand Protocol Privacy Policy.
+      <div>© <span id="y"></span> DTA Craft</div>
+      <div>
+        <a href="/">Home</a> ·
+        <a href="/deadhand-protocol/">Deadhand Protocol</a> ·
+        <a href="mailto:contact@dtacraft.com">Contact</a>
+      </div>
     </footer>
-  </main>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
