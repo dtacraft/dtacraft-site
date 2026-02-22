@@ -122,6 +122,11 @@
       display:grid; place-items:center;
       overflow:hidden;
     }
+    /* keep logo container same in both themes */
+    html[data-theme="light"] .mark{
+      border:1px solid rgba(230,237,246,.10);
+      background:rgba(11,16,23,.60);
+    }
 
     .mark img{width:26px; height:26px; object-fit:contain; display:block}
     .brand small{display:block; font-size:12px; color:var(--muted); font-weight:800}
@@ -143,31 +148,28 @@
       cursor:pointer;
     }
     html[data-theme="light"] .btn{ background: rgba(255,255,255,.75); }
-    
+
     .btn:hover{transform: translateY(-1px); border-color: rgba(193,119,58,.40)}
     .btn:focus{outline:none; box-shadow: var(--focus)}
     .btn:focus-visible{outline:none; box-shadow: var(--focus)}
-    
+
     .btn.primary{
       background: var(--btn);
       border-color: rgba(193,119,58,.78);
-      color: var(--amber); /* keep orange on primary too */
-      /* reduce shadow (no heavy inset) */
-      box-shadow: 0 8px 18px rgba(0,0,0,.30);
+      color: var(--amber);
+      box-shadow: 0 8px 18px rgba(0,0,0,.30); /* subtle */
     }
     .btn.primary:hover{
       background: var(--btn2);
       border-color: rgba(240,160,16,.72);
       box-shadow: 0 10px 22px rgba(0,0,0,.32);
     }
-    
+
     .btn.ghost{background:rgba(11,16,23,.60)}
     html[data-theme="light"] .btn.ghost{background: rgba(255,255,255,.65)}
 
     .btn.small{padding:9px 11px; border-radius:12px; font-size:13px}
-    .btnIcon{
-      width:16px; height:16px; display:inline-block;
-    }
+    .btnIcon{width:16px; height:16px; display:inline-block}
 
     /* Hero */
     .hero{padding:46px 6px 18px}
@@ -272,18 +274,22 @@
       color: rgba(16,19,24,.85);
       background: rgba(255,255,255,.78);
     }
+
     .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-    /* VBox actions: stack buttons vertically */
+
+    /* VBox actions: stack buttons vertically (used in Contact/Email) */
     .actions.vbox{
       flex-direction: column;
       align-items: flex-start;
       flex-wrap: nowrap;
       gap: 10px;
+      margin-top: 10px;
     }
     .actions.vbox .btn{ width: fit-content; }
     @media (max-width: 980px){
       .actions.vbox .btn{ width: 100%; }
     }
+
     .section{
       margin-top:26px;
       border:1px solid var(--line);
@@ -296,8 +302,10 @@
     .section h2{margin:0 0 10px; font-size:18px; letter-spacing:.25px}
     .section .desc{margin:0 0 14px; color:var(--muted); font-size:14px; max-width:88ch}
 
+    /* Two-column layout (Email + Social side-by-side) */
     .twoCol{
-      display:grid; grid-template-columns: 1.2fr .8fr;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
       gap:14px;
     }
 
@@ -372,7 +380,7 @@
     @media (max-width: 980px){
       .heroGrid{grid-template-columns: 1fr}
       .card{grid-column: span 12}
-      .twoCol{grid-template-columns: 1fr}
+      .twoCol{grid-template-columns: 1fr} /* stack on mobile */
       .shot{grid-column: span 12}
       .shot.wide{grid-column: span 12}
       h1{font-size:40px}
@@ -571,18 +579,20 @@
         </div>
       </section>
 
+      <!-- CONTACT (fixed: Email + Social side-by-side, and Email buttons stacked vertically) -->
       <section class="section" id="contact">
         <h2>Contact</h2>
         <p class="desc">Support, business inquiries, or press.</p>
 
+        <div class="twoCol">
           <div class="mini">
             <h4>Email</h4>
-          
-            <div class="actions" style="margin-top:10px">
+
+            <div class="actions vbox">
               <a class="btn primary" href="mailto:contact@dtacraft.com">contact@dtacraft.com</a>
               <a class="btn" href="mailto:support@dtacraft.com">support@dtacraft.com</a>
             </div>
-          
+
             <p class="note">
               Email to <strong>contact@dtacraft.com</strong> and <strong>support@dtacraft.com</strong> is routed to Gmail.
             </p>
@@ -627,7 +637,6 @@
       }
     }
 
-    // Load saved theme; default = dark
     const saved = localStorage.getItem(STORAGE_KEY);
     setTheme(saved === "light" ? "light" : "dark");
 
