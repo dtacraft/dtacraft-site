@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy - DTA Craft</title>
+  <meta name="description" content="Privacy Policy for DTA Craft products." />
+  <meta name="theme-color" content="#070a0f" />
+  <style>
+    :root{
+      --bg:#070a0f; --bg2:#0b0f14; --panel:#0e141c;
+      --text:#e6edf6; --muted:#a3b0c2; --line:rgba(230,237,246,.12);
+      --radius:18px; --max:900px;
+      --btn:#2b1d12; --ember:#c1773a; --ember2:#f0a010;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background: linear-gradient(180deg, var(--bg), var(--bg2));
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:32px 18px 80px}
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background: rgba(14,20,28,.72);
+      padding:18px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.50);
+    }
+    h1{margin:0 0 10px}
+    h2{margin:18px 0 8px; font-size:18px}
+    p,li{color:var(--muted)}
+    code{background:rgba(0,0,0,.25); padding:2px 6px; border-radius:8px; border:1px solid rgba(230,237,246,.10); color:rgba(230,237,246,.88)}
+    .muted{color:var(--muted)}
+    .top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px; border-radius:14px;
+      border:1px solid rgba(193,119,58,.78);
+      text-decoration:none;
+      background: var(--btn);
+      font-weight:900;
+      color:rgba(246,241,236,.92);
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.35), 0 12px 26px rgba(0,0,0,.55);
+    }
+    .btn:hover{border-color: rgba(240,160,16,.72)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a class="btn" href="/">← Back</a>
+      <div class="muted">Last updated: <span id="d"></span></div>
+    </div>
+
+    <div class="card">
+      <h1>Privacy Policy</h1>
+      <p>This Privacy Policy describes how DTA Craft handles information when you use our products and services.</p>
+
+      <h2>Contact</h2>
+      <p>If you have questions, contact: <a href="mailto:dtacraftvn@gmail.com">dtacraftvn@gmail.com</a>.</p>
+
+      <h2>Overview</h2>
+      <ul>
+        <li><strong>Website:</strong> <code>dtacraft.com</code> is a static site hosted on Cloudflare Pages.</li>
+        <li><strong>Product:</strong> <a href="https://play.google.com/store/apps/details?id=com.dtacraft.deadhandprotocol" target="_blank" rel="noopener">Deadhand Protocol</a> on Google Play.</li>
+      </ul>
+
+      <h2>Data We Collect</h2>
+      <p>
+        This website does not ask you to create an account or submit personal information by default.
+        If you email us, we receive the information you include in the email.
+      </p>
+
+      <h2>Third-Party Services</h2>
+      <p>
+        We may use third-party platforms to distribute products (e.g., Google Play) and to host this website (Cloudflare Pages).
+        These services may process technical data (such as IP address, device information) as part of normal operation.
+      </p>
+
+      <h2>Gameplay Data</h2>
+      <p>
+        Game progress and settings may be stored locally on your device depending on the product. If a game uses online features in the future, this policy will be updated.
+      </p>
+
+      <h2>Children</h2>
+      <p>Our products are not intended to collect personal information from children. If you believe a child provided us information, contact us to request deletion.</p>
+
+      <h2>Changes</h2>
+      <p>We may update this policy as products evolve. The “Last updated” date will change accordingly.</p>
+
+      <h2>Vietnamese Summary (tóm tắt)</h2>
+      <p>
+        Website <code>dtacraft.com</code> là website tĩnh; mặc định không yêu cầu bạn tạo tài khoản hay nhập dữ liệu cá nhân.
+        Nếu bạn gửi email cho chúng tôi, chúng tôi nhận nội dung email đó để hỗ trợ.
+        Các nền tảng bên thứ ba như Google Play/Cloudflare có thể xử lý dữ liệu kỹ thuật để vận hành dịch vụ.
+      </p>
+
+      <p class="muted" style="margin-top:16px">
+        Note: If your app uses analytics/ads/crash reporting (Firebase, AdMob, etc.), you should add explicit disclosures here.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const d = new Date();
+    const pad = (n)=>String(n).padStart(2,"0");
+    document.getElementById("d").textContent = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  </script>
+</body>
+</html>
