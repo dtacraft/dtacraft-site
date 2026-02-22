@@ -3,23 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="DTA Craft builds constraint-driven games about power, pressure, and consequence." />
+  <meta name="description" content="DTA Craft is an independent game studio building grim, system-driven games about pressure, scarcity, and consequence." />
   <meta name="theme-color" content="#070a0f" />
   <link rel="canonical" href="https://dtacraft.com/" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="DTA Craft" />
-  <meta property="og:description" content="Constraint-driven games about power, pressure, and consequence." />
+  <meta property="og:description" content="Independent game studio. Grim, system-driven games about pressure, scarcity, and consequence." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dtacraft.com/" />
   <meta property="og:image" content="https://dtacraft.com/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DTA Craft" />
+  <meta name="twitter:description" content="Independent game studio. Grim, system-driven games about pressure, scarcity, and consequence." />
+  <meta name="twitter:image" content="https://dtacraft.com/og-image.jpg" />
 
   <title>DTA Craft</title>
   <link rel="icon" href="/assets/favicon.png" type="image/png" />
 
   <style>
     :root{
-      /* pulled from Deadhand Protocol vibe: ash + worn steel + ember */
+      /* Default theme = DARK (Deadhand Protocol vibe: ash + worn steel + ember) */
       --bg:#070a0f;
       --bg2:#0b0f14;
       --panel:#0e141c;
@@ -29,17 +35,46 @@
       --muted:#a3b0c2;
       --line:rgba(230,237,246,.12);
 
-      /* accents (restrained) */
       --ember:#c1773a;     /* UI edge */
-      --ember2:#f0a010;    /* logo amber */
+      --amber:#f0a010;     /* logo amber */
       --blood:#900010;     /* deep red */
       --steel:#8fa1b5;     /* cold highlight */
+
       --btn:#2b1d12;       /* leather/brown */
       --btn2:#3a2617;      /* hover */
 
       --shadow: 0 14px 40px rgba(0,0,0,.50);
+      --shadow2: 0 10px 26px rgba(0,0,0,.45);
       --radius: 18px;
+      --radius2: 14px;
       --max: 1120px;
+
+      --focus: 0 0 0 3px rgba(240,160,16,.25);
+    }
+
+    /* Light theme (optional) */
+    html[data-theme="light"]{
+      --bg:#f4f2ee;
+      --bg2:#ffffff;
+      --panel:#ffffff;
+      --panel2:#fbfaf8;
+
+      --text:#101318;
+      --muted:#4a5568;
+      --line:rgba(16,19,24,.14);
+
+      /* Keep brand accents, toned down */
+      --ember:#9b5b2b;
+      --amber:#c97b18;
+      --blood:#7a0f12;
+      --steel:#4b5a6b;
+
+      --btn:#2b1d12;
+      --btn2:#3a2617;
+
+      --shadow: 0 12px 28px rgba(0,0,0,.14);
+      --shadow2: 0 10px 22px rgba(0,0,0,.12);
+      --focus: 0 0 0 3px rgba(155,91,43,.22);
     }
 
     *{box-sizing:border-box}
@@ -59,8 +94,12 @@
     a:hover{opacity:.92}
 
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 86px}
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
 
-    /* top nav */
+    /* Top nav */
     .nav{
       display:flex; align-items:center; justify-content:space-between;
       gap:12px; padding:14px 16px;
@@ -70,6 +109,10 @@
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
     }
+    html[data-theme="light"] .nav{
+      background: rgba(255,255,255,.70);
+    }
+
     .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.2px}
     .mark{
       width:34px; height:34px;
@@ -79,13 +122,56 @@
       display:grid; place-items:center;
       overflow:hidden;
     }
+    html[data-theme="light"] .mark{
+      border:1px solid rgba(16,19,24,.12);
+      background: rgba(255,255,255,.75);
+    }
+
     .mark img{width:26px; height:26px; object-fit:contain; display:block}
     .brand small{display:block; font-size:12px; color:var(--muted); font-weight:800}
+
+    .navRight{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end}
     .navlinks{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
     .navlinks a{color:var(--muted); font-weight:800; font-size:14px}
     .navlinks a:hover{color:var(--text)}
 
-    /* hero */
+    /* Buttons (no gradients) */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px; border-radius:var(--radius2);
+      border:1px solid var(--line);
+      background:rgba(14,20,28,.68);
+      color:var(--text);
+      font-weight:900; font-size:14px;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease, opacity .12s ease;
+      cursor:pointer;
+    }
+    html[data-theme="light"] .btn{ background: rgba(255,255,255,.75); }
+
+    .btn:hover{transform: translateY(-1px); border-color: rgba(193,119,58,.40)}
+    .btn:focus{outline:none; box-shadow: var(--focus)}
+    .btn:focus-visible{outline:none; box-shadow: var(--focus)}
+
+    .btn.primary{
+      background: var(--btn);
+      border-color: rgba(193,119,58,.78);
+      color: rgba(246,241,236,.92);
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.35), 0 12px 26px rgba(0,0,0,.55);
+    }
+    .btn.primary:hover{
+      background: var(--btn2);
+      border-color: rgba(240,160,16,.72);
+    }
+
+    .btn.ghost{background:rgba(11,16,23,.60)}
+    html[data-theme="light"] .btn.ghost{background: rgba(255,255,255,.65)}
+
+    .btn.small{padding:9px 11px; border-radius:12px; font-size:13px}
+    .btnIcon{
+      width:16px; height:16px; display:inline-block;
+    }
+
+    /* Hero */
     .hero{padding:46px 6px 18px}
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
@@ -97,6 +183,11 @@
       font-size:13px; font-weight:900;
       letter-spacing:.2px;
     }
+    html[data-theme="light"] .kicker{
+      color: rgba(16,19,24,.82);
+      background: rgba(255,255,255,.70);
+    }
+
     .dot{width:8px; height:8px; border-radius:999px; background:var(--ember)}
     h1{
       margin:14px 0 10px;
@@ -110,6 +201,9 @@
       max-width:76ch;
     }
     .sub strong{color:rgba(230,237,246,.90); font-weight:900}
+    html[data-theme="light"] .sub strong{color: rgba(16,19,24,.92)}
+
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; margin:18px 0 0}
 
     .heroGrid{
       display:grid;
@@ -118,6 +212,7 @@
       align-items:stretch;
       margin-top:14px;
     }
+
     .heroShot{
       border:1px solid var(--line);
       border-radius:var(--radius);
@@ -125,8 +220,10 @@
       box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
-      min-height: 240px;
+      min-height: 260px;
     }
+    html[data-theme="light"] .heroShot{ background: rgba(255,255,255,.78); }
+
     .heroShot img{
       width:100%;
       height:100%;
@@ -137,43 +234,17 @@
     .heroShot .overlay{
       position:absolute; inset:auto 0 0 0;
       padding:14px 14px 14px;
-      background: linear-gradient(180deg, transparent, rgba(0,0,0,.68)); /* not a button gradient */
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.68));
     }
-    .heroShot .overlay .title{
-      font-weight:900; letter-spacing:.2px;
+    html[data-theme="light"] .heroShot .overlay{
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.45));
     }
+    .heroShot .overlay .title{font-weight:900; letter-spacing:.2px}
     .heroShot .overlay .meta{
       margin-top:4px; color:rgba(230,237,246,.75); font-size:13px; font-weight:800;
     }
 
-    /* buttons (NO gradients) */
-    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; margin:18px 0 0}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 14px; border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(14,20,28,.68);
-      color:var(--text);
-      font-weight:900; font-size:14px;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-    }
-    .btn:hover{transform: translateY(-1px); border-color: rgba(193,119,58,.40)}
-    .btn.primary{
-      background: var(--btn);
-      border-color: rgba(193,119,58,.78);
-      color: rgba(246,241,236,.92);
-      box-shadow:
-        inset 0 0 0 1px rgba(0,0,0,.35),
-        0 12px 26px rgba(0,0,0,.55);
-    }
-    .btn.primary:hover{
-      background: var(--btn2);
-      border-color: rgba(240,160,16,.72);
-    }
-    .btn.ghost{background:rgba(11,16,23,.60)}
-    .btn small{opacity:.85; font-weight:900}
-
-    /* cards + sections */
+    /* Cards + sections */
     .grid{
       display:grid; grid-template-columns: repeat(12, 1fr);
       gap:14px; margin-top:14px;
@@ -186,8 +257,11 @@
       box-shadow: var(--shadow);
       padding:16px;
     }
+    html[data-theme="light"] .card{ background: rgba(255,255,255,.80); }
+
     .card h3{margin:0 0 8px; font-size:18px; letter-spacing:.2px}
     .card p{margin:0 0 12px; color:var(--muted); font-size:14px}
+
     .meta{display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 0}
     .pill{
       font-size:12px; font-weight:900;
@@ -195,6 +269,10 @@
       padding:6px 10px; border-radius:999px;
       border:1px solid var(--line);
       background: rgba(11,16,23,.70);
+    }
+    html[data-theme="light"] .pill{
+      color: rgba(16,19,24,.85);
+      background: rgba(255,255,255,.78);
     }
     .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
 
@@ -205,31 +283,48 @@
       background: rgba(11,16,23,.48);
       padding:18px;
     }
+    html[data-theme="light"] .section{ background: rgba(255,255,255,.62); }
+
     .section h2{margin:0 0 10px; font-size:18px; letter-spacing:.25px}
-    .section .desc{margin:0 0 14px; color:var(--muted); font-size:14px; max-width:84ch}
+    .section .desc{margin:0 0 14px; color:var(--muted); font-size:14px; max-width:88ch}
 
     .twoCol{
       display:grid; grid-template-columns: 1.2fr .8fr;
       gap:14px;
     }
+
     .mini{
       border:1px solid var(--line);
       border-radius:var(--radius);
       background: rgba(14,20,28,.62);
       padding:14px;
     }
+    html[data-theme="light"] .mini{ background: rgba(255,255,255,.78); }
+
     .mini h4{margin:0 0 8px; font-size:14px; letter-spacing:.2px}
     .mini ul{margin:0; padding-left:18px; color:var(--muted); font-size:13px}
     .mini li{margin:6px 0}
+
     .note{
       margin:10px 0 0;
       color:rgba(230,237,246,.72);
       font-size:13px;
       font-weight:800;
     }
-    .note code{background:rgba(0,0,0,.25); padding:2px 6px; border-radius:8px; border:1px solid rgba(230,237,246,.10)}
+    html[data-theme="light"] .note{ color: rgba(16,19,24,.78); }
 
-    /* media grid */
+    .note code{
+      background:rgba(0,0,0,.25);
+      padding:2px 6px;
+      border-radius:8px;
+      border:1px solid rgba(230,237,246,.10)
+    }
+    html[data-theme="light"] .note code{
+      background: rgba(16,19,24,.06);
+      border:1px solid rgba(16,19,24,.12)
+    }
+
+    /* Media grid */
     .shots{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -241,14 +336,16 @@
       border-radius:16px;
       background: rgba(14,20,28,.72);
       overflow:hidden;
-      box-shadow: 0 10px 26px rgba(0,0,0,.45);
+      box-shadow: var(--shadow2);
     }
+    html[data-theme="light"] .shot{ background: rgba(255,255,255,.80); }
+
     .shot img{width:100%; height:100%; display:block; object-fit:cover}
-    .shot.tall{grid-column: span 4}
     .shot.tall img{aspect-ratio: 9/16}
     .shot.wide{grid-column: span 8}
     .shot.wide img{aspect-ratio: 16/9}
 
+    /* Footer */
     .footer{
       margin-top:26px; color:var(--muted);
       display:flex; align-items:flex-start; justify-content:space-between;
@@ -257,6 +354,12 @@
     }
     .footer a{color:var(--muted); text-decoration:underline; text-underline-offset:3px}
     .footer a:hover{color:var(--text)}
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto !important}
+      .btn{transition:none}
+    }
 
     @media (max-width: 980px){
       .heroGrid{grid-template-columns: 1fr}
@@ -284,6 +387,8 @@
 </head>
 
 <body>
+  <a class="sr-only" href="#content">Skip to content</a>
+
   <div class="wrap">
     <header class="nav">
       <div class="brand">
@@ -294,18 +399,27 @@
         </div>
       </div>
 
-      <nav class="navlinks" aria-label="Primary">
-        <a href="#products">Products</a>
-        <a href="#about">About</a>
-        <a href="#media">Media</a>
-        <a href="#links">Links</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="navRight">
+        <nav class="navlinks" aria-label="Primary">
+          <a href="#products">Products</a>
+          <a href="#about">About</a>
+          <a href="#media">Media</a>
+          <a href="#press">Press</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="btn ghost small" id="themeToggle" type="button" aria-label="Toggle theme">
+          <svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 18a6 6 0 1 1 0-12a6 6 0 0 1 0 12Zm0-16h0Zm0 20h0ZM4.22 5.64l1.42-1.42l1.7 1.7L5.92 7.34l-1.7-1.7Zm14.04 14.04l1.42-1.42l1.7 1.7l-1.42 1.42l-1.7-1.7ZM2 13v-2h3v2H2Zm19 0v-2h3v2h-3ZM4.22 20.36l1.7-1.7l1.42 1.42l-1.7 1.7l-1.42-1.42ZM18.08 7.34l1.7-1.7l1.42 1.42l-1.7 1.7l-1.42-1.42Z"/>
+          </svg>
+          Light
+        </button>
+      </div>
     </header>
 
-    <main>
+    <main id="content">
       <section class="hero">
-        <div class="kicker"><span class="dot" aria-hidden="true"></span> Grim systems · Clean consequences</div>
+        <div class="kicker"><span class="dot" aria-hidden="true"></span> Grim systems · Clear consequences</div>
         <h1>Pressure. Scarcity. Consequence.</h1>
         <p class="sub">
           DTA Craft builds <strong>grim, system-driven</strong> games where comfort is punished and every choice leaves a mark.
@@ -342,7 +456,7 @@
               <article class="card">
                 <h3>DTA Craft Studio</h3>
                 <p>
-                  A small studio pursuing clarity: deterministic resolution where possible, readable states, and pressure curves that punish repetition.
+                  We pursue clarity: deterministic resolution where possible, readable states, and pressure curves that punish repetition and defensive comfort.
                 </p>
                 <div class="meta">
                   <span class="pill">System-driven</span>
@@ -350,8 +464,8 @@
                   <span class="pill">Restrained tone</span>
                 </div>
                 <div class="actions">
-                  <a class="btn" href="https://www.youtube.com/@DTACraft" target="_blank" rel="noopener">YouTube</a>
-                  <a class="btn" href="https://www.facebook.com/DTACraft/" target="_blank" rel="noopener">Facebook</a>
+                  <a class="btn" href="#press">Press kit</a>
+                  <a class="btn" href="#media">Screenshots</a>
                 </div>
               </article>
             </div>
@@ -370,8 +484,8 @@
       <section class="section" id="about">
         <h2>About</h2>
         <p class="desc">
-          DTA Craft explores pressure, scarcity, and tactical decision-making within restrained, often dark-toned worlds.
-          The goal is depth through systems, not spectacle—clean inputs, readable states, and outcomes you can trace.
+          DTA Craft explores pressure, scarcity, and tactical decision-making within restrained, dark-toned worlds.
+          Depth comes from systems, not spectacle—clean inputs, readable states, and outcomes you can trace.
         </p>
 
         <div class="twoCol">
@@ -381,14 +495,14 @@
               <li><strong>Constraint first:</strong> costs, tradeoffs, scarcity.</li>
               <li><strong>Readable systems:</strong> states are visible; outcomes are explainable.</li>
               <li><strong>Pressure curve:</strong> repetition and defensive comfort get punished.</li>
-              <li><strong>Restrained grim tone:</strong> worn steel, ash, heat—no glow, no heroism.</li>
+              <li><strong>Restrained grim tone:</strong> worn steel, ash, heat — no glow, no heroism.</li>
             </ul>
             <div class="note">
               Official contact is <code>dtacraftvn@gmail.com</code>. We do not use <code>dtacraft@gmail.com</code>.
             </div>
           </div>
 
-          <div class="mini" id="links">
+          <div class="mini">
             <h4>Official links</h4>
             <ul>
               <li><a href="https://play.google.com/store/apps/details?id=com.dtacraft.deadhandprotocol" target="_blank" rel="noopener">Deadhand Protocol (Google Play)</a></li>
@@ -403,17 +517,49 @@
 
       <section class="section" id="media">
         <h2>Media</h2>
-        <p class="desc">
-          In-game UI and tone references from Deadhand Protocol.
-        </p>
+        <p class="desc">In-game UI and tone references from Deadhand Protocol.</p>
 
         <div class="shots">
           <a class="shot wide" href="/assets/hero.jpg" target="_blank" rel="noopener"><img src="/assets/hero.jpg" alt="Key art" loading="lazy" /></a>
-          <a class="shot tall" href="/assets/screen_1.jpg" target="_blank" rel="noopener"><img src="/assets/screen_1.jpg" alt="Screenshot 1" loading="lazy" /></a>
-          <a class="shot tall" href="/assets/screen_2.jpg" target="_blank" rel="noopener"><img src="/assets/screen_2.jpg" alt="Screenshot 2" loading="lazy" /></a>
-          <a class="shot tall" href="/assets/screen_3.jpg" target="_blank" rel="noopener"><img src="/assets/screen_3.jpg" alt="Screenshot 3" loading="lazy" /></a>
-          <a class="shot tall" href="/assets/screen_4.jpg" target="_blank" rel="noopener"><img src="/assets/screen_4.jpg" alt="Screenshot 4" loading="lazy" /></a>
-          <a class="shot tall" href="/assets/screen_5.jpg" target="_blank" rel="noopener"><img src="/assets/screen_5.jpg" alt="Screenshot 5" loading="lazy" /></a>
+          <a class="shot" href="/assets/screen_1.jpg" target="_blank" rel="noopener"><img src="/assets/screen_1.jpg" alt="Screenshot 1" loading="lazy" /></a>
+          <a class="shot" href="/assets/screen_2.jpg" target="_blank" rel="noopener"><img src="/assets/screen_2.jpg" alt="Screenshot 2" loading="lazy" /></a>
+          <a class="shot" href="/assets/screen_3.jpg" target="_blank" rel="noopener"><img src="/assets/screen_3.jpg" alt="Screenshot 3" loading="lazy" /></a>
+          <a class="shot" href="/assets/screen_4.jpg" target="_blank" rel="noopener"><img src="/assets/screen_4.jpg" alt="Screenshot 4" loading="lazy" /></a>
+          <a class="shot" href="/assets/screen_5.jpg" target="_blank" rel="noopener"><img src="/assets/screen_5.jpg" alt="Screenshot 5" loading="lazy" /></a>
+        </div>
+
+        <div class="note" style="margin-top:12px">
+          Tip: want a dedicated presskit zip? Put files in <code>/press/</code> later and link it here.
+        </div>
+      </section>
+
+      <section class="section" id="press">
+        <h2>Press</h2>
+        <p class="desc">Fast facts and assets for coverage.</p>
+
+        <div class="twoCol">
+          <div class="mini">
+            <h4>Factsheet</h4>
+            <ul>
+              <li><strong>Studio:</strong> DTA Craft (Independent Game Studio)</li>
+              <li><strong>Location:</strong> Vietnam</li>
+              <li><strong>Current release:</strong> Deadhand Protocol</li>
+              <li><strong>Genre:</strong> Tactical card game</li>
+              <li><strong>Platforms:</strong> Android (Google Play)</li>
+              <li><strong>Contact:</strong> <a href="mailto:dtacraftvn@gmail.com">dtacraftvn@gmail.com</a></li>
+            </ul>
+          </div>
+
+          <div class="mini">
+            <h4>Brand assets</h4>
+            <ul>
+              <li><a href="/assets/logo.png" target="_blank" rel="noopener">Logo (PNG)</a></li>
+              <li><a href="/og-image.jpg" target="_blank" rel="noopener">OG Image</a></li>
+              <li><a href="/assets/gp.png" target="_blank" rel="noopener">Google Play banner</a></li>
+              <li><a href="/assets/hero.jpg" target="_blank" rel="noopener">Key art</a></li>
+            </ul>
+            <div class="note">These links open the raw files from this site.</div>
+          </div>
         </div>
       </section>
 
@@ -428,7 +574,7 @@
               <a class="btn primary" href="mailto:dtacraftvn@gmail.com">dtacraftvn@gmail.com</a>
             </p>
             <p class="note">
-              Tip: set up <strong>hello@dtacraft.com</strong> (Email Routing) later to look fully official while still forwarding to Gmail.
+              Optional next step: set up <strong>hello@dtacraft.com</strong> via Cloudflare Email Routing (forward to Gmail).
             </p>
           </div>
 
@@ -437,6 +583,7 @@
             <ul>
               <li><a href="https://www.youtube.com/@DTACraft" target="_blank" rel="noopener">YouTube</a></li>
               <li><a href="https://www.facebook.com/DTACraft/" target="_blank" rel="noopener">Facebook</a></li>
+              <li><a href="https://play.google.com/store/apps/details?id=com.dtacraft.deadhandprotocol" target="_blank" rel="noopener">Google Play</a></li>
             </ul>
           </div>
         </div>
@@ -444,15 +591,42 @@
 
       <div class="footer">
         <div>© <span id="y"></span> DTA Craft. All rights reserved.</div>
-        <div>
-          <a href="/privacy.html">Privacy</a>
-        </div>
+        <div><a href="/privacy.html">Privacy</a></div>
       </div>
     </main>
   </div>
 
   <script>
+    // Footer year
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Theme toggle (default: DARK)
+    const STORAGE_KEY = "dtacraft_theme";
+    const btn = document.getElementById("themeToggle");
+
+    function setTheme(theme) {
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (theme === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+        btn.lastChild.textContent = " Dark";
+        if (meta) meta.setAttribute("content", "#ffffff");
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+        btn.lastChild.textContent = " Light";
+        if (meta) meta.setAttribute("content", "#070a0f");
+      }
+    }
+
+    // Load saved theme; default = dark
+    const saved = localStorage.getItem(STORAGE_KEY);
+    setTheme(saved === "light" ? "light" : "dark");
+
+    btn.addEventListener("click", () => {
+      const isLight = document.documentElement.getAttribute("data-theme") === "light";
+      const next = isLight ? "dark" : "light";
+      localStorage.setItem(STORAGE_KEY, next);
+      setTheme(next);
+    });
   </script>
 </body>
 </html>
