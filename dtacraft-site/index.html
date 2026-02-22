@@ -9,7 +9,7 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="DTA Craft" />
-  <meta property="og:description" content="Independent game studio. Grim systems, clear consequences." />
+  <meta property="og:description" content="Independent game studio. Grim, system-driven games about pressure, scarcity, and consequence." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dtacraft.com/" />
   <meta property="og:image" content="https://dtacraft.com/og-image.jpg" />
@@ -17,7 +17,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="DTA Craft" />
-  <meta name="twitter:description" content="Independent game studio. Grim systems, clear consequences." />
+  <meta name="twitter:description" content="Independent game studio. Grim, system-driven games about pressure, scarcity, and consequence." />
   <meta name="twitter:image" content="https://dtacraft.com/og-image.jpg" />
 
   <title>DTA Craft</title>
@@ -28,53 +28,53 @@
       /* Default theme = DARK (Deadhand Protocol vibe: ash + worn steel + ember) */
       --bg:#070a0f;
       --bg2:#0b0f14;
-
-      --surface: rgba(14,20,28,.72);
-      --surface2: rgba(11,16,23,.58);
-      --surfaceLight: rgba(255,255,255,.78);
+      --panel:#0e141c;
+      --panel2:#0b1017;
 
       --text:#e6edf6;
       --muted:#a3b0c2;
       --line:rgba(230,237,246,.12);
 
-      --ember:#c1773a;
-      --amber:#f0a010;
-      --steel:#8fa1b5;
+      --ember:#c1773a;     /* UI edge */
+      --amber:#f0a010;     /* logo amber */
+      --blood:#900010;     /* deep red */
+      --steel:#8fa1b5;     /* cold highlight */
 
-      --btn:#2b1d12;
-      --btn2:#3a2617;
+      --btn:#2b1d12;       /* leather/brown */
+      --btn2:#3a2617;      /* hover */
 
-      --shadow: 0 14px 40px rgba(0,0,0,.45);
-      --shadow2: 0 10px 26px rgba(0,0,0,.38);
-      --btnShadow: 0 6px 14px rgba(0,0,0,.24);
-
+      --shadow: 0 14px 40px rgba(0,0,0,.50);
+      --shadow2: 0 10px 26px rgba(0,0,0,.45);
       --radius: 18px;
       --radius2: 14px;
       --max: 1120px;
-      --focus: 0 0 0 3px rgba(240,160,16,.20);
+
+      --focus: 0 0 0 3px rgba(240,160,16,.25);
     }
 
-    /* Optional LIGHT mode (keeps the same logo asset) */
+    /* Light theme (optional) */
     html[data-theme="light"]{
       --bg:#f4f2ee;
       --bg2:#ffffff;
-
-      --surface: rgba(255,255,255,.82);
-      --surface2: rgba(255,255,255,.70);
+      --panel:#ffffff;
+      --panel2:#fbfaf8;
 
       --text:#101318;
       --muted:#4a5568;
       --line:rgba(16,19,24,.14);
 
+      /* Keep brand accents, toned down */
       --ember:#9b5b2b;
       --amber:#c97b18;
+      --blood:#7a0f12;
       --steel:#4b5a6b;
+
+      --btn:#2b1d12;
+      --btn2:#3a2617;
 
       --shadow: 0 12px 28px rgba(0,0,0,.14);
       --shadow2: 0 10px 22px rgba(0,0,0,.12);
-      --btnShadow: 0 6px 14px rgba(0,0,0,.12);
-
-      --focus: 0 0 0 3px rgba(155,91,43,.18);
+      --focus: 0 0 0 3px rgba(155,91,43,.22);
     }
 
     *{box-sizing:border-box}
@@ -105,9 +105,12 @@
       gap:12px; padding:14px 16px;
       border:1px solid var(--line);
       border-radius:var(--radius);
-      background:var(--surface);
+      background:rgba(14,20,28,.72);
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
+    }
+    html[data-theme="light"] .nav{
+      background: rgba(255,255,255,.70);
     }
 
     .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.2px}
@@ -118,11 +121,6 @@
       background:rgba(11,16,23,.60);
       display:grid; place-items:center;
       overflow:hidden;
-    }
-    /* Keep logo container consistent across themes (do not override .mark in light mode) */
-    html[data-theme="light"] .mark{
-      border:1px solid rgba(230,237,246,.10);
-      background:rgba(11,16,23,.60);
     }
 
     .mark img{width:26px; height:26px; object-fit:contain; display:block}
@@ -138,40 +136,38 @@
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 14px; border-radius:var(--radius2);
       border:1px solid var(--line);
-      background:var(--surface2);
-      color:var(--amber);                /* button text = orange */
+      background:rgba(14,20,28,.68);
+      color:var(--amber); /* button text = orange */
       font-weight:900; font-size:14px;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease, opacity .12s ease;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease, opacity .12s ease;
       cursor:pointer;
-      box-shadow: none;                  /* no heavy shadow by default */
     }
+    html[data-theme="light"] .btn{ background: rgba(255,255,255,.75); }
+    
     .btn:hover{transform: translateY(-1px); border-color: rgba(193,119,58,.40)}
     .btn:focus{outline:none; box-shadow: var(--focus)}
     .btn:focus-visible{outline:none; box-shadow: var(--focus)}
-
+    
     .btn.primary{
       background: var(--btn);
       border-color: rgba(193,119,58,.78);
-      color: var(--amber);
-      box-shadow: var(--btnShadow);     /* subtle */
+      color: var(--amber); /* keep orange on primary too */
+      /* reduce shadow (no heavy inset) */
+      box-shadow: 0 8px 18px rgba(0,0,0,.30);
     }
     .btn.primary:hover{
       background: var(--btn2);
       border-color: rgba(240,160,16,.72);
-      box-shadow: var(--btnShadow);
+      box-shadow: 0 10px 22px rgba(0,0,0,.32);
     }
+    
+    .btn.ghost{background:rgba(11,16,23,.60)}
+    html[data-theme="light"] .btn.ghost{background: rgba(255,255,255,.65)}
 
-    .btn.ghost{
-      background: rgba(11,16,23,.40);
+    .btn.small{padding:9px 11px; border-radius:12px; font-size:13px}
+    .btnIcon{
+      width:16px; height:16px; display:inline-block;
     }
-
-    .btn.small{
-      padding:9px 11px;
-      border-radius:12px;
-      font-size:13px
-    }
-
-    .btnIcon{width:16px; height:16px; display:inline-block}
 
     /* Hero */
     .hero{padding:46px 6px 18px}
@@ -187,16 +183,15 @@
     }
     html[data-theme="light"] .kicker{
       color: rgba(16,19,24,.82);
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.70);
     }
-    .dot{width:8px; height:8px; border-radius:999px; background:var(--ember)}
 
+    .dot{width:8px; height:8px; border-radius:999px; background:var(--ember)}
     h1{
       margin:14px 0 10px;
       font-size:48px; line-height:1.05;
       letter-spacing:-.9px;
     }
-
     .sub{
       margin:0 0 18px;
       color:var(--muted);
@@ -219,12 +214,14 @@
     .heroShot{
       border:1px solid var(--line);
       border-radius:var(--radius);
-      background: var(--surface);
+      background: rgba(14,20,28,.72);
       box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
       min-height: 260px;
     }
+    html[data-theme="light"] .heroShot{ background: rgba(255,255,255,.78); }
+
     .heroShot img{
       width:100%;
       height:100%;
@@ -235,10 +232,15 @@
     .heroShot .overlay{
       position:absolute; inset:auto 0 0 0;
       padding:14px 14px 14px;
-      background: linear-gradient(180deg, transparent, rgba(0,0,0,.60));
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.68));
+    }
+    html[data-theme="light"] .heroShot .overlay{
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.45));
     }
     .heroShot .overlay .title{font-weight:900; letter-spacing:.2px}
-    .heroShot .overlay .meta{margin-top:4px; color:rgba(230,237,246,.75); font-size:13px; font-weight:800}
+    .heroShot .overlay .meta{
+      margin-top:4px; color:rgba(230,237,246,.75); font-size:13px; font-weight:800;
+    }
 
     /* Cards + sections */
     .grid{
@@ -249,10 +251,12 @@
       grid-column: span 6;
       border:1px solid var(--line);
       border-radius:var(--radius);
-      background: var(--surface);
+      background: rgba(14,20,28,.72);
       box-shadow: var(--shadow);
       padding:16px;
     }
+    html[data-theme="light"] .card{ background: rgba(255,255,255,.80); }
+
     .card h3{margin:0 0 8px; font-size:18px; letter-spacing:.2px}
     .card p{margin:0 0 12px; color:var(--muted); font-size:14px}
 
@@ -262,37 +266,22 @@
       color:rgba(230,237,246,.86);
       padding:6px 10px; border-radius:999px;
       border:1px solid var(--line);
-      background: rgba(11,16,23,.60);
+      background: rgba(11,16,23,.70);
     }
     html[data-theme="light"] .pill{
       color: rgba(16,19,24,.85);
-      background: rgba(255,255,255,.70);
+      background: rgba(255,255,255,.78);
     }
-
     .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-
-    /* VBox actions (stack vertically) */
-    .actions.vbox{
-      flex-direction: column;
-      align-items: flex-start;
-      flex-wrap: nowrap;
-      margin-top: 10px;
-    }
-    .actions.vbox .btn{ width: fit-content; }
-    @media (max-width: 980px){
-      .actions.vbox .btn{ width: 100%; }
-    }
 
     .section{
       margin-top:26px;
       border:1px solid var(--line);
       border-radius:var(--radius);
-      background: rgba(11,16,23,.36);
+      background: rgba(11,16,23,.48);
       padding:18px;
     }
-    html[data-theme="light"] .section{
-      background: rgba(255,255,255,.58);
-    }
+    html[data-theme="light"] .section{ background: rgba(255,255,255,.62); }
 
     .section h2{margin:0 0 10px; font-size:18px; letter-spacing:.25px}
     .section .desc{margin:0 0 14px; color:var(--muted); font-size:14px; max-width:88ch}
@@ -305,12 +294,10 @@
     .mini{
       border:1px solid var(--line);
       border-radius:var(--radius);
-      background: rgba(14,20,28,.60);
+      background: rgba(14,20,28,.62);
       padding:14px;
     }
-    html[data-theme="light"] .mini{
-      background: rgba(255,255,255,.74);
-    }
+    html[data-theme="light"] .mini{ background: rgba(255,255,255,.78); }
 
     .mini h4{margin:0 0 8px; font-size:14px; letter-spacing:.2px}
     .mini ul{margin:0; padding-left:18px; color:var(--muted); font-size:13px}
@@ -345,14 +332,18 @@
       grid-column: span 4;
       border:1px solid var(--line);
       border-radius:16px;
-      background: var(--surface);
+      background: rgba(14,20,28,.72);
       overflow:hidden;
       box-shadow: var(--shadow2);
     }
+    html[data-theme="light"] .shot{ background: rgba(255,255,255,.80); }
+
     .shot img{width:100%; height:100%; display:block; object-fit:cover}
+    .shot.tall img{aspect-ratio: 9/16}
     .shot.wide{grid-column: span 8}
     .shot.wide img{aspect-ratio: 16/9}
 
+    /* Footer */
     .footer{
       margin-top:26px; color:var(--muted);
       display:flex; align-items:flex-start; justify-content:space-between;
@@ -361,6 +352,12 @@
     }
     .footer a{color:var(--muted); text-decoration:underline; text-underline-offset:3px}
     .footer a:hover{color:var(--text)}
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto !important}
+      .btn{transition:none}
+    }
 
     @media (max-width: 980px){
       .heroGrid{grid-template-columns: 1fr}
@@ -409,11 +406,11 @@
           <a href="#contact">Contact</a>
         </nav>
 
-        <button class="btn ghost small" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+        <button class="btn ghost small" id="themeToggle" type="button" aria-label="Toggle theme">
           <svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true">
             <path fill="currentColor" d="M12 18a6 6 0 1 1 0-12a6 6 0 0 1 0 12Zm0-16h0Zm0 20h0ZM4.22 5.64l1.42-1.42l1.7 1.7L5.92 7.34l-1.7-1.7Zm14.04 14.04l1.42-1.42l1.7 1.7l-1.42 1.42l-1.7-1.7ZM2 13v-2h3v2H2Zm19 0v-2h3v2h-3ZM4.22 20.36l1.7-1.7l1.42 1.42l-1.7 1.7l-1.42-1.42ZM18.08 7.34l1.7-1.7l1.42 1.42l-1.7 1.7l-1.42-1.42Z"/>
           </svg>
-          <span id="themeLabel">Light</span>
+          Light
         </button>
       </div>
     </header>
@@ -450,7 +447,7 @@
                 </div>
                 <div class="actions">
                   <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.dtacraft.deadhandprotocol" target="_blank" rel="noopener">Google Play</a>
-                  <a class="btn" href="mailto:support@dtacraft.com">Support</a>
+                  <a class="btn" href="#contact">Support</a>
                 </div>
               </article>
 
@@ -499,7 +496,7 @@
               <li><strong>Restrained grim tone:</strong> worn steel, ash, heat — no glow, no heroism.</li>
             </ul>
             <div class="note">
-              Official contact: <code>contact@dtacraft.com</code>. Support: <code>support@dtacraft.com</code>.
+              Official contact is <code>contact@dtacraft.com</code>. We do not use <code>dtacraft@gmail.com</code>.
             </div>
           </div>
 
@@ -528,11 +525,15 @@
           <a class="shot" href="/assets/screen_4.jpg" target="_blank" rel="noopener"><img src="/assets/screen_4.jpg" alt="Screenshot 4" loading="lazy" /></a>
           <a class="shot" href="/assets/screen_5.jpg" target="_blank" rel="noopener"><img src="/assets/screen_5.jpg" alt="Screenshot 5" loading="lazy" /></a>
         </div>
+
+        <div class="note" style="margin-top:12px">
+          Tip: want a dedicated presskit zip? Put files in <code>/press/</code> later and link it here.
+        </div>
       </section>
 
       <section class="section" id="press">
         <h2>Press</h2>
-        <p class="desc">Fast facts and brand assets.</p>
+        <p class="desc">Fast facts and assets for coverage.</p>
 
         <div class="twoCol">
           <div class="mini">
@@ -555,7 +556,7 @@
               <li><a href="/assets/gp.png" target="_blank" rel="noopener">Google Play banner</a></li>
               <li><a href="/assets/hero.jpg" target="_blank" rel="noopener">Key art</a></li>
             </ul>
-            <div class="note">These links open the raw files hosted on this site.</div>
+            <div class="note">These links open the raw files from this site.</div>
           </div>
         </div>
       </section>
@@ -564,15 +565,14 @@
         <h2>Contact</h2>
         <p class="desc">Support, business inquiries, or press.</p>
 
-        <div class="twoCol">
           <div class="mini">
             <h4>Email</h4>
-
-            <div class="actions vbox">
+          
+            <div class="actions" style="margin-top:10px">
               <a class="btn primary" href="mailto:contact@dtacraft.com">contact@dtacraft.com</a>
               <a class="btn" href="mailto:support@dtacraft.com">support@dtacraft.com</a>
             </div>
-
+          
             <p class="note">
               Email to <strong>contact@dtacraft.com</strong> and <strong>support@dtacraft.com</strong> is routed to Gmail.
             </p>
@@ -600,27 +600,24 @@
     // Footer year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Theme toggle (default = DARK)
+    // Theme toggle (default: DARK)
     const STORAGE_KEY = "dtacraft_theme";
     const btn = document.getElementById("themeToggle");
-    const label = document.getElementById("themeLabel");
 
-    function setTheme(theme){
+    function setTheme(theme) {
       const meta = document.querySelector('meta[name="theme-color"]');
-
       if (theme === "light") {
         document.documentElement.setAttribute("data-theme", "light");
-        btn.setAttribute("aria-pressed", "true");
-        label.textContent = "Dark";
+        btn.lastChild.textContent = " Dark";
         if (meta) meta.setAttribute("content", "#ffffff");
       } else {
         document.documentElement.removeAttribute("data-theme");
-        btn.setAttribute("aria-pressed", "false");
-        label.textContent = "Light";
+        btn.lastChild.textContent = " Light";
         if (meta) meta.setAttribute("content", "#070a0f");
       }
     }
 
+    // Load saved theme; default = dark
     const saved = localStorage.getItem(STORAGE_KEY);
     setTheme(saved === "light" ? "light" : "dark");
 
