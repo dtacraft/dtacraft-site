@@ -1,0 +1,35 @@
+{
+  "baseUrl": "https://dtacraft.com",
+  "sitemaps": [
+    {
+      "name": "main",
+      "urls": [
+        {
+          "path": "/",
+          "changefreq": "weekly",
+          "priority": 1.0
+        },
+        {
+          "path": "/privacy",
+          "changefreq": "yearly",
+          "priority": 0.4
+        }
+      ]
+    },
+    {
+      "name": "games",
+      "urls": [
+        {
+          "path": "/collapse/privacy",
+          "changefreq": "yearly",
+          "priority": 0.5
+        },
+        {
+          "path": "/deadhand/privacy",
+          "changefreq": "yearly",
+          "priority": 0.5
+        }
+      ]
+    }
+  ]
+}
