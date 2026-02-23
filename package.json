@@ -1,0 +1,7 @@
+{
+  "name": "dtacraft-site",
+  "private": true,
+  "scripts": {
+    "sitemap:generate": "node scripts/generate-sitemaps.mjs"
+  }
+}
