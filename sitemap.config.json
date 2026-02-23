@@ -10,6 +10,11 @@
           "priority": 1.0
         },
         {
+          "path": "/press/",
+          "changefreq": "monthly",
+          "priority": 0.6
+        },
+        {
           "path": "/privacy",
           "changefreq": "yearly",
           "priority": 0.4
@@ -20,13 +25,33 @@
       "name": "games",
       "urls": [
         {
-          "path": "/collapse/privacy",
-          "changefreq": "yearly",
+          "path": "/games/deadhand-protocol/",
+          "changefreq": "monthly",
+          "priority": 0.8
+        },
+        {
+          "path": "/games/collapse-state/",
+          "changefreq": "monthly",
+          "priority": 0.8
+        }
+      ]
+    },
+    {
+      "name": "wiki",
+      "urls": [
+        {
+          "path": "/wiki/lore/",
+          "changefreq": "monthly",
           "priority": 0.5
         },
         {
-          "path": "/deadhand/privacy",
-          "changefreq": "yearly",
+          "path": "/wiki/design-philosophy/",
+          "changefreq": "monthly",
+          "priority": 0.5
+        },
+        {
+          "path": "/wiki/faq/",
+          "changefreq": "monthly",
           "priority": 0.5
         }
       ]
