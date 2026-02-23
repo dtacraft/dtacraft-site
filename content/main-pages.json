@@ -1,0 +1,20 @@
+[
+  {
+    "path": "/",
+    "lastmod": "2026-02-23",
+    "changefreq": "weekly",
+    "priority": 1.0
+  },
+  {
+    "path": "/press/",
+    "lastmod": "2026-02-23",
+    "changefreq": "monthly",
+    "priority": 0.6
+  },
+  {
+    "path": "/privacy",
+    "lastmod": "2026-02-23",
+    "changefreq": "yearly",
+    "priority": 0.4
+  }
+]

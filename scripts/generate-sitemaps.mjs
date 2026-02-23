@@ -9,33 +9,37 @@ const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '..');
 const publishDir = path.join(repoRoot, 'dtacraft-site');
 const sitemapsDir = path.join(publishDir, 'sitemaps');
-const configPath = path.join(repoRoot, 'sitemap.config.json');
+const contentDir = path.join(repoRoot, 'content');
+const baseUrl = 'https://dtacraft.com';
 
 const escapeXml = (value) =>
-  value
+  String(value)
     .replaceAll('&', '&amp;')
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&apos;');
 
-const normalizeBaseUrl = (value) => value.replace(/\/+$/, '');
-
-const ensureAbsoluteUrl = (baseUrl, sitePath) => {
+const ensureAbsoluteUrl = (sitePath) => {
   const safePath = sitePath.startsWith('/') ? sitePath : `/${sitePath}`;
   return `${baseUrl}${safePath}`;
 };
 
-const timestamp = () => new Date().toISOString();
+const readJson = async (fileName) => {
+  const raw = await fs.readFile(path.join(contentDir, fileName), 'utf8');
+  return JSON.parse(raw);
+};
 
-const buildChildSitemap = (baseUrl, urls) => {
+const toGamePath = (slug) => `/games/${slug}/`;
+const toWikiPath = (slug) => `/wiki/${slug}/`;
+
+const buildChildSitemap = (urls) => {
   const entries = urls
     .map((item) => {
-      const lastmod = item.lastmod ?? timestamp();
       const lines = [
         '  <url>',
-        `    <loc>${escapeXml(ensureAbsoluteUrl(baseUrl, item.path))}</loc>`,
-        `    <lastmod>${escapeXml(lastmod)}</lastmod>`
+        `    <loc>${escapeXml(ensureAbsoluteUrl(item.path))}</loc>`,
+        `    <lastmod>${escapeXml(item.lastmod)}</lastmod>`
       ];
 
       if (item.changefreq) {
@@ -60,13 +64,14 @@ const buildChildSitemap = (baseUrl, urls) => {
   ].join('\n');
 };
 
-const buildSitemapIndex = (baseUrl, names) => {
+const buildSitemapIndex = (names) => {
+  const generatedAt = new Date().toISOString();
   const entries = names
     .map(
       (name) => [
         '  <sitemap>',
         `    <loc>${escapeXml(`${baseUrl}/sitemaps/${name}.xml`)}</loc>`,
-        `    <lastmod>${escapeXml(timestamp())}</lastmod>`,
+        `    <lastmod>${escapeXml(generatedAt)}</lastmod>`,
         '  </sitemap>'
       ].join('\n')
     )
@@ -81,40 +86,31 @@ const buildSitemapIndex = (baseUrl, names) => {
   ].join('\n');
 };
 
-const buildRobotsTxt = (baseUrl) => [
-  'User-agent: *',
-  'Allow: /',
-  '',
-  `Sitemap: ${baseUrl}/sitemap.xml`,
-  ''
-].join('\n');
+const buildRobotsTxt = () => ['User-agent: *', 'Allow: /', '', `Sitemap: ${baseUrl}/sitemap.xml`, ''].join('\n');
 
 const main = async () => {
-  const configRaw = await fs.readFile(configPath, 'utf8');
-  const config = JSON.parse(configRaw);
-  const baseUrl = normalizeBaseUrl(config.baseUrl);
+  const mainPages = await readJson('main-pages.json');
+  const games = await readJson('games.json');
+  const wiki = await readJson('wiki.json');
 
-  if (baseUrl !== 'https://dtacraft.com') {
-    throw new Error(`Expected canonical base URL to be https://dtacraft.com, received: ${baseUrl}`);
-  }
+  const sitemapData = {
+    main: mainPages,
+    games: games.map((item) => ({ ...item, path: toGamePath(item.slug) })),
+    wiki: wiki.map((item) => ({ ...item, path: toWikiPath(item.slug) }))
+  };
 
   await fs.mkdir(sitemapsDir, { recursive: true });
 
-  const sitemapNames = [];
-  for (const sitemap of config.sitemaps) {
-    sitemapNames.push(sitemap.name);
-    const xml = buildChildSitemap(baseUrl, sitemap.urls);
-    const target = path.join(sitemapsDir, `${sitemap.name}.xml`);
-    await fs.writeFile(target, xml, 'utf8');
+  const names = ['main', 'games', 'wiki'];
+  for (const name of names) {
+    const xml = buildChildSitemap(sitemapData[name]);
+    await fs.writeFile(path.join(sitemapsDir, `${name}.xml`), xml, 'utf8');
   }
 
-  const indexXml = buildSitemapIndex(baseUrl, sitemapNames);
-  await fs.writeFile(path.join(publishDir, 'sitemap.xml'), indexXml, 'utf8');
+  await fs.writeFile(path.join(publishDir, 'sitemap.xml'), buildSitemapIndex(names), 'utf8');
+  await fs.writeFile(path.join(publishDir, 'robots.txt'), buildRobotsTxt(), 'utf8');
 
-  const robotsTxt = buildRobotsTxt(baseUrl);
-  await fs.writeFile(path.join(publishDir, 'robots.txt'), robotsTxt, 'utf8');
-
-  console.log(`Generated ${sitemapNames.length} sitemap files under ${sitemapsDir}`);
+  console.log(`Generated sitemap index and ${names.length} child sitemaps.`);
 };
 
 main().catch((error) => {

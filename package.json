@@ -2,6 +2,7 @@
   "name": "dtacraft-site",
   "private": true,
   "scripts": {
-    "sitemap:generate": "node scripts/generate-sitemaps.mjs"
+    "sitemap:generate": "node scripts/generate-sitemaps.mjs",
+    "site:validate": "node scripts/validate-site.mjs"
   }
 }
