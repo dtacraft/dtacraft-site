@@ -1,20 +1,7 @@
 :root{
-  --bg:#070a0f;
-  --bg2:#0b0f14;
-  --panel:#0e141c;
-  --panel-soft:rgba(14,20,28,.72);
-  --panel-alt:rgba(11,16,23,.48);
-  --text:#e6edf6;
-  --muted:#a3b0c2;
-  --line:rgba(230,237,246,.12);
-  --ember:#c1773a;
-  --amber:#f0a010;
-  --btn:#2b1d12;
-  --btn2:#3a2617;
   --radius:18px;
   --radius2:14px;
   --max:1120px;
-  --shadow:0 14px 40px rgba(0,0,0,.25);
 }
 *{box-sizing:border-box}
 body{
@@ -57,7 +44,7 @@ h1{margin:14px 0 8px;font-size:42px;line-height:1.08;letter-spacing:-.7px}
 ul{margin:0;padding-left:18px;color:var(--muted)}
 li{margin:6px 0}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:var(--radius2);border:1px solid var(--line);background:rgba(14,20,28,.68);color:var(--amber);font-weight:900;font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:var(--radius2);border:1px solid var(--line);background:rgba(14,20,28,.68);color:var(--amber);font-weight:900;font-size:14px;cursor:pointer}
 .btn.primary{background:var(--btn);border-color:rgba(193,119,58,.78)}
 .btn.primary:hover{background:var(--btn2);border-color:rgba(240,160,16,.72)}
 .footer{margin-top:26px;color:var(--muted);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 4px 0}
@@ -67,3 +54,6 @@ li{margin:6px 0}
   .card{grid-column:span 12}
   h1{font-size:36px}
 }
+
+html[data-theme="light"] .mark{border:1px solid rgba(230,237,246,.10);background:rgba(11,16,23,.60)}
+html[data-theme="light"] .kicker{color:rgba(16,19,24,.82);background:rgba(255,255,255,.70)}
