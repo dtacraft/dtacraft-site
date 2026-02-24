@@ -1,0 +1,41 @@
+:root{
+  color-scheme: dark;
+  --bg:#070a0f;
+  --bg2:#0b0f14;
+  --panel:#0e141c;
+  --panel-soft:rgba(14,20,28,.72);
+  --panel-alt:rgba(11,16,23,.48);
+  --text:#e6edf6;
+  --muted:#a3b0c2;
+  --line:rgba(230,237,246,.12);
+  --ember:#c1773a;
+  --amber:#f0a010;
+  --btn:#2b1d12;
+  --btn2:#3a2617;
+  --shadow:0 14px 40px rgba(0,0,0,.25);
+  --focus:0 0 0 3px rgba(240,160,16,.25);
+}
+
+html[data-theme="light"]{
+  color-scheme: light;
+  --bg:#f4f2ee;
+  --bg2:#ffffff;
+  --panel:#ffffff;
+  --panel-soft:rgba(255,255,255,.78);
+  --panel-alt:rgba(255,255,255,.62);
+  --text:#101318;
+  --muted:#4a5568;
+  --line:rgba(16,19,24,.14);
+  --ember:#9b5b2b;
+  --amber:#c97b18;
+  --btn:#2b1d12;
+  --btn2:#3a2617;
+  --shadow:0 12px 28px rgba(0,0,0,.14);
+  --focus:0 0 0 3px rgba(155,91,43,.22);
+}
+
+.navRight{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+
+#themeToggle{min-width:112px}
+#themeToggle .btnIcon{width:16px;height:16px;display:inline-block}
+#themeToggle:focus-visible{outline:none;box-shadow:var(--focus)}

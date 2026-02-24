@@ -6,6 +6,18 @@
     "priority": 1.0
   },
   {
+    "path": "/games/",
+    "lastmod": "2026-02-23",
+    "changefreq": "weekly",
+    "priority": 0.9
+  },
+  {
+    "path": "/wiki/",
+    "lastmod": "2026-02-23",
+    "changefreq": "weekly",
+    "priority": 0.8
+  },
+  {
     "path": "/press/",
     "lastmod": "2026-02-23",
     "changefreq": "monthly",

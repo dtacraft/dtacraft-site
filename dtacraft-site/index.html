@@ -22,6 +22,8 @@
 
   <title>DTA Craft</title>
   <link rel="icon" href="/assets/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="/assets/site.css" />
+  <script src="/assets/site.js" defer></script>
 
   <style>
     :root{
@@ -417,18 +419,17 @@
 
       <div class="navRight">
         <nav class="navlinks" aria-label="Primary">
-          <a href="#products">Products</a>
-          <a href="#about">About</a>
-          <a href="#media">Media</a>
-          <a href="#press">Press</a>
-          <a href="#contact">Contact</a>
+          <a href="/games/">Games</a>
+          <a href="/wiki/">Wiki</a>
+          <a href="/press/">Press</a>
+          <a href="/privacy">Privacy</a>
         </nav>
 
-        <button class="btn ghost small" id="themeToggle" type="button" aria-label="Toggle theme">
+        <button class="btn ghost small" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false">
           <svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true">
             <path fill="currentColor" d="M12 18a6 6 0 1 1 0-12a6 6 0 0 1 0 12Zm0-16h0Zm0 20h0ZM4.22 5.64l1.42-1.42l1.7 1.7L5.92 7.34l-1.7-1.7Zm14.04 14.04l1.42-1.42l1.7 1.7l-1.42 1.42l-1.7-1.7ZM2 13v-2h3v2H2Zm19 0v-2h3v2h-3ZM4.22 20.36l1.7-1.7l1.42 1.42l-1.7 1.7l-1.42-1.42ZM18.08 7.34l1.7-1.7l1.42 1.42l-1.7 1.7l-1.42-1.42Z"/>
           </svg>
-          Light
+          <span data-theme-label>Light</span>
         </button>
       </div>
     </header>
@@ -525,7 +526,7 @@
               <li><a href="https://www.youtube.com/@DTACraft" target="_blank" rel="noopener">YouTube: @DTACraft</a></li>
               <li><a href="https://www.facebook.com/DTACraft/" target="_blank" rel="noopener">Facebook: /DTACraft</a></li>
               <li><a href="mailto:contact@dtacraft.com">Email: contact@dtacraft.com</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
             </ul>
           </div>
         </div>
@@ -611,41 +612,13 @@
 
       <div class="footer">
         <div>© <span id="y"></span> DTA Craft. All rights reserved.</div>
-        <div><a href="/privacy.html">Privacy</a></div>
+        <div><a href="/privacy">Privacy</a></div>
       </div>
     </main>
   </div>
 
   <script>
-    // Footer year
     document.getElementById("y").textContent = new Date().getFullYear();
-
-    // Theme toggle (default: DARK)
-    const STORAGE_KEY = "dtacraft_theme";
-    const btn = document.getElementById("themeToggle");
-
-    function setTheme(theme) {
-      const meta = document.querySelector('meta[name="theme-color"]');
-      if (theme === "light") {
-        document.documentElement.setAttribute("data-theme", "light");
-        btn.lastChild.textContent = " Dark";
-        if (meta) meta.setAttribute("content", "#ffffff");
-      } else {
-        document.documentElement.removeAttribute("data-theme");
-        btn.lastChild.textContent = " Light";
-        if (meta) meta.setAttribute("content", "#070a0f");
-      }
-    }
-
-    const saved = localStorage.getItem(STORAGE_KEY);
-    setTheme(saved === "light" ? "light" : "dark");
-
-    btn.addEventListener("click", () => {
-      const isLight = document.documentElement.getAttribute("data-theme") === "light";
-      const next = isLight ? "dark" : "light";
-      localStorage.setItem(STORAGE_KEY, next);
-      setTheme(next);
-    });
   </script>
 </body>
 </html>
