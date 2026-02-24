@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Game thumbnail placeholder">
+  <rect width="1200" height="900" fill="#111926"/>
+  <rect x="70" y="70" width="1060" height="760" rx="24" fill="none" stroke="#f0a010" stroke-opacity="0.55" stroke-width="6"/>
+  <text x="50%" y="49%" fill="#e6edf6" font-size="62" text-anchor="middle" font-family="Noto Sans, Arial, sans-serif">DTA Craft</text>
+  <text x="50%" y="57%" fill="#a3b0c2" font-size="38" text-anchor="middle" font-family="Noto Sans, Arial, sans-serif">Thumbnail</text>
+</svg>

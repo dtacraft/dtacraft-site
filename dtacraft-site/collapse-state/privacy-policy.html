@@ -8,13 +8,13 @@
 
   <title>Privacy Policy – Collapse State | DTA Craft</title>
   <meta name="description" content="Privacy Policy for Collapse State (premium offline single-player). No personal data collected." />
-  <link rel="canonical" href="https://dtacraft.com/collapse/privacy-policy" />
+  <link rel="canonical" href="https://dtacraft.com/collapse-state/privacy-policy.html" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Privacy Policy – Collapse State" />
   <meta property="og:description" content="Collapse State is a premium offline single-player game. No personal data collected." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dtacraft.com/collapse/privacy-policy" />
+  <meta property="og:url" content="https://dtacraft.com/collapse-state/privacy-policy.html" />
   <meta property="og:site_name" content="DTA Craft" />
 
   <!-- Twitter -->
@@ -176,6 +176,8 @@
       .navRight{justify-content:flex-start}
     }
   </style>
+  <link rel="stylesheet" href="/assets/theme.css" />
+  <script src="/assets/theme.js" defer></script>
 </head>
 
 <body>
@@ -193,14 +195,17 @@
         </div>
       </div>
 
-      <div class="navRight" aria-label="Quick links">
-        <a class="btn" href="/">Home</a>
-        <!-- Optional: change this to your Collapse State landing page if different -->
-        <a class="btn" href="/collapse-state/">Collapse State</a>
-
-        <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.dtacraft.collapsestate" target="_blank" rel="noopener">Google Play</a>
-
-        <a class="btn" href="mailto:contact@dtacraft.com">Contact</a>
+            <div class="navRight">
+        <nav class="navlinks" aria-label="Primary">
+          <a href="/">Home</a>
+          <a href="/games/">Games</a>
+          <a href="/wiki/">Wiki</a>
+          <a href="/press/">Press</a>
+          <a href="/privacy">Privacy</a>
+        </nav>
+        <button class="btn" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+          <span data-theme-label>Light</span>
+        </button>
       </div>
     </div>
 
