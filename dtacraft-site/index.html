@@ -22,6 +22,9 @@
 
   <title>DTA Craft</title>
   <link rel="icon" href="/assets/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Noto+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/site.css" />
   <script src="/assets/site.js" defer></script>
 
@@ -83,7 +86,7 @@
     html,body{height:100%}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      font-family: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color:var(--text);
       line-height:1.55;
       background:
@@ -191,6 +194,10 @@
     }
 
     .dot{width:8px; height:8px; border-radius:999px; background:var(--ember)}
+    h1, h2, h3{
+      font-family: "Cinzel", Georgia, "Times New Roman", serif;
+    }
+
     h1{
       margin:14px 0 10px;
       font-size:48px; line-height:1.05;
@@ -467,6 +474,7 @@
                 <div class="actions">
                   <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.dtacraft.deadhandprotocol" target="_blank" rel="noopener">Google Play</a>
                   <a class="btn" href="#contact">Support</a>
+                  <a class="btn" href="/deadhand-protocol/privacy-policy.html">Privacy policy</a>
                 </div>
               </article>
 
@@ -545,9 +553,6 @@
           <a class="shot" href="/assets/screen_5.jpg" target="_blank" rel="noopener"><img src="/assets/screen_5.jpg" alt="Screenshot 5" loading="lazy" /></a>
         </div>
 
-        <div class="note" style="margin-top:12px">
-          Tip: want a dedicated presskit zip? Put files in <code>/press/</code> later and link it here.
-        </div>
       </section>
 
       <section class="section" id="press">
