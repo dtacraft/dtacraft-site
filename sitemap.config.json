@@ -33,6 +33,11 @@
           "path": "/games/collapse-state/",
           "changefreq": "monthly",
           "priority": 0.8
+        },
+        {
+          "path": "/games/tenebris/",
+          "changefreq": "monthly",
+          "priority": 0.7
         }
       ]
     },
