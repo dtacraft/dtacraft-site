@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Noto+Sans:wght@400;500;700;800;900&display=swap");
+
+:root {
+  --font-heading: "Cinzel", Georgia, "Times New Roman", serif;
+  --font-body: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+.game-cover,
+.game-thumb {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  object-fit: cover;
+  background: var(--panel);
+}
+
+.game-cover {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 14px;
+}
+
+.game-thumb {
+  aspect-ratio: 4 / 3;
+  margin-bottom: 12px;
+}
+
+.navRight{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.navlinks{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+.navlinks a{color:var(--muted);font-weight:800;font-size:14px}
+.navlinks a:hover{color:var(--text)}
+#themeToggle{min-width:88px}
