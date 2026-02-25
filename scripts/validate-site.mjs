@@ -46,6 +46,20 @@ const walkIndexPages = async (relativeDir, exclusions = []) => {
   return pages;
 };
 
+const walkHtmlPages = async () => {
+  const pages = [];
+  const walk = async (dir) => {
+    const entries = await fs.readdir(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) await walk(full);
+      if (entry.isFile() && entry.name.endsWith('.html')) pages.push(full);
+    }
+  };
+  await walk(publishDir);
+  return pages;
+};
+
 const main = async () => {
   const config = JSON.parse(await fs.readFile(configPath, 'utf8'));
   const urls = new Set(['/']);
@@ -75,7 +89,42 @@ const main = async () => {
     return;
   }
 
-  console.log(`Validated ${urls.size} URL targets and ${requiredFiles.length} generated files.`);
+  const htmlIssues = [];
+  const requiredThemeIncludes = ['/assets/theme.css', '/assets/site.css', '/assets/theme.js', '/assets/site.js'];
+  const requiredFontToken = 'fonts.googleapis.com/css2?family=Cinzel';
+  const htmlPages = await walkHtmlPages();
+
+  for (const page of htmlPages) {
+    const rel = path.relative(publishDir, page).replaceAll(path.sep, '/');
+    const html = await fs.readFile(page, 'utf8');
+
+    for (const include of requiredThemeIncludes) {
+      if (!html.includes(include)) {
+        htmlIssues.push(`${rel}: missing ${include}`);
+      }
+    }
+
+    if (!html.includes(requiredFontToken)) {
+      htmlIssues.push(`${rel}: missing Cinzel/Noto Sans Google Fonts include`);
+    }
+
+    if (html.includes('<header class="nav">')) {
+      if (!html.includes('class="brand" href="/"')) {
+        htmlIssues.push(`${rel}: missing home link on logo/title in header`);
+      }
+      if (!html.includes('href="/">Home</a>')) {
+        htmlIssues.push(`${rel}: missing Home item in top navigation`);
+      }
+    }
+  }
+
+  if (htmlIssues.length) {
+    console.error('Theme/navigation consistency issues:\n' + htmlIssues.map((m) => `- ${m}`).join('\n'));
+    process.exitCode = 1;
+    return;
+  }
+
+  console.log(`Validated ${urls.size} URL targets, ${requiredFiles.length} generated files, and ${htmlPages.length} HTML theme/nav checks.`);
 };
 
 main().catch((error) => {
