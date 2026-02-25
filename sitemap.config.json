@@ -1,65 +1,41 @@
 {
   "baseUrl": "https://dtacraft.com",
-  "sitemaps": [
-    {
-      "name": "main",
-      "urls": [
-        {
-          "path": "/",
-          "changefreq": "weekly",
-          "priority": 1.0
-        },
-        {
-          "path": "/press/",
-          "changefreq": "monthly",
-          "priority": 0.6
-        },
-        {
-          "path": "/privacy",
-          "changefreq": "yearly",
-          "priority": 0.4
-        }
-      ]
+  "sitemaps": ["main", "games", "devlog", "wiki", "press", "studio", "support"],
+  "staticSitemaps": {
+    "main": [
+      { "path": "/", "changefreq": "weekly", "priority": 1.0 },
+      { "path": "/privacy/", "changefreq": "yearly", "priority": 0.5 },
+      { "path": "/terms/", "changefreq": "yearly", "priority": 0.4 },
+      { "path": "/credits/", "changefreq": "yearly", "priority": 0.4 }
+    ],
+    "press": [
+      { "path": "/press/", "changefreq": "monthly", "priority": 0.6 }
+    ],
+    "studio": [
+      { "path": "/studio/", "changefreq": "monthly", "priority": 0.6 }
+    ],
+    "support": [
+      { "path": "/support/", "changefreq": "weekly", "priority": 0.7 }
+    ]
+  },
+  "autoscan": {
+    "games": {
+      "dir": "games",
+      "changefreq": "weekly",
+      "priority": 0.8,
+      "exclude": ["/games/"]
     },
-    {
-      "name": "games",
-      "urls": [
-        {
-          "path": "/games/deadhand-protocol/",
-          "changefreq": "monthly",
-          "priority": 0.8
-        },
-        {
-          "path": "/games/collapse-state/",
-          "changefreq": "monthly",
-          "priority": 0.8
-        },
-        {
-          "path": "/games/tenebris/",
-          "changefreq": "monthly",
-          "priority": 0.7
-        }
-      ]
+    "devlog": {
+      "dir": "devlog",
+      "changefreq": "weekly",
+      "priority": 0.7,
+      "exclude": []
     },
-    {
-      "name": "wiki",
-      "urls": [
-        {
-          "path": "/wiki/lore/",
-          "changefreq": "monthly",
-          "priority": 0.5
-        },
-        {
-          "path": "/wiki/design-philosophy/",
-          "changefreq": "monthly",
-          "priority": 0.5
-        },
-        {
-          "path": "/wiki/faq/",
-          "changefreq": "monthly",
-          "priority": 0.5
-        }
-      ]
+    "wiki": {
+      "dir": "wiki",
+      "changefreq": "weekly",
+      "priority": 0.7,
+      "exclude": ["/wiki/"]
     }
-  ]
+  }
 }

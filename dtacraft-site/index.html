@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="/assets/site.css" />
     <script src="/assets/theme.js" defer></script>
   <script src="/assets/site.js" defer></script>
+  <script src="/assets/ia.js" defer></script>
 
   <style>
     :root{
@@ -429,9 +430,11 @@
       <div class="navRight">
         <nav class="navlinks" aria-label="Primary">
           <a href="/games/">Games</a>
-          <a href="/wiki/">Wiki</a>
+          <a href="/devlog/">Devlog</a>
+          <a href="/wiki/">Wiki / Rules</a>
           <a href="/press/">Press</a>
-          <a href="/privacy">Privacy</a>
+          <a href="/studio/">Studio</a>
+          <a href="/support/">Support</a>
         </nav>
 
         <button class="btn ghost small" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false">
@@ -577,6 +580,19 @@
         </div>
       </section>
 
+      <section class="section" id="latest-update">
+        <h2>Latest update</h2>
+        <p class="desc">Pulled from the changelog source.</p>
+        <p class="latest-update" data-latest-update="deadhand-protocol">Loading latest update...</p>
+        <div class="actions"><a class="btn" href="/devlog/changelog/">Full changelog</a><a class="btn" href="/devlog/">Devlog</a></div>
+      </section>
+
+      <section class="section" id="newsletter">
+        <h2>Newsletter</h2>
+        <p class="desc">Optional mailing list placeholder for release announcements and production updates.</p>
+        <div class="actions"><a class="btn" href="mailto:contact@dtacraft.com?subject=Newsletter%20interest">Join waitlist placeholder</a></div>
+      </section>
+
       <section class="section" id="media">
         <h2>Media</h2>
         <p class="desc">In-game UI and tone references from Deadhand Protocol.</p>
@@ -653,8 +669,12 @@
       </section>
 
       <div class="footer">
+        <div class="footer-columns">
+          <div><h4>Games</h4><ul><li><a href="/games/deadhand-protocol/">Deadhand Protocol</a></li><li><a href="/games/collapse-state/">Collapse State</a></li><li><a href="/games/tenebris/">Tenebris</a></li></ul></div>
+          <div><h4>Studio</h4><ul><li><a href="/devlog/">Devlog</a></li><li><a href="/studio/">Studio</a></li><li><a href="/support/">Support</a></li></ul></div>
+          <div><h4>Legal</h4><ul><li><a href="/privacy/">Privacy</a></li><li><a href="/terms/">Terms</a></li><li><a href="/credits/">Credits</a></li><li><a href="/games/deadhand-protocol/privacy/">Deadhand Privacy</a></li><li><a href="/games/collapse-state/privacy/">Collapse Privacy</a></li><li><a href="/games/tenebris/privacy/">Tenebris Privacy</a></li></ul></div>
+        </div>
         <div>© <span id="y"></span> DTA Craft. All rights reserved.</div>
-        <div><a href="/privacy">Privacy</a></div>
       </div>
     </main>
   </div>

@@ -2,14 +2,30 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://dtacraft.com/sitemaps/main.xml</loc>
-    <lastmod>2026-02-24T10:04:25.716Z</lastmod>
+    <lastmod>2026-02-25</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://dtacraft.com/sitemaps/games.xml</loc>
-    <lastmod>2026-02-24T10:04:25.716Z</lastmod>
+    <lastmod>2026-02-25</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://dtacraft.com/sitemaps/devlog.xml</loc>
+    <lastmod>2026-02-25</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://dtacraft.com/sitemaps/wiki.xml</loc>
-    <lastmod>2026-02-24T10:04:25.716Z</lastmod>
+    <lastmod>2026-02-25</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://dtacraft.com/sitemaps/press.xml</loc>
+    <lastmod>2026-02-25</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://dtacraft.com/sitemaps/studio.xml</loc>
+    <lastmod>2026-02-25</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://dtacraft.com/sitemaps/support.xml</loc>
+    <lastmod>2026-02-25</lastmod>
   </sitemap>
 </sitemapindex>

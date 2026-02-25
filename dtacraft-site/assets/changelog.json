@@ -1,0 +1,20 @@
+{
+  "updatedAt": "2026-02-25",
+  "games": {
+    "deadhand-protocol": {
+      "version": "1.2.0",
+      "date": "2026-02-20",
+      "summary": "Balance pass on pressure escalation and improved readability for card outcomes."
+    },
+    "collapse-state": {
+      "version": "0.4.0-dev",
+      "date": "2026-02-18",
+      "summary": "Prototype branch updated with new collapse chains and clearer fail-state messaging."
+    },
+    "tenebris": {
+      "version": "0.3.2-dev",
+      "date": "2026-02-16",
+      "summary": "Core loop checkpoint with revised lighting contrast and progression pacing."
+    }
+  }
+}
