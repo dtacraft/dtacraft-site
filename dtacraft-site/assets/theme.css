@@ -33,8 +33,23 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 12px;
 }
 
-.navRight{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-.navlinks{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
-.navlinks a{color:var(--muted);font-weight:800;font-size:14px}
-.navlinks a:hover{color:var(--text)}
-#themeToggle{min-width:88px}
+.navRight { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+.navlinks { display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end; }
+.navlinks a { color:var(--muted); font-weight:800; font-size:14px; }
+.navlinks a:hover { color:var(--text); }
+
+[data-theme-toggle] {
+  min-width: 88px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.theme-icon {
+  width: 1.1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
