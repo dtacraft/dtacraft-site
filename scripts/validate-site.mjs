@@ -8,29 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '..');
 const publishDir = path.join(repoRoot, 'dtacraft-site');
-const contentDir = path.join(repoRoot, 'content');
-
-const readJson = async (fileName) => {
-  const raw = await fs.readFile(path.join(contentDir, fileName), 'utf8');
-  return JSON.parse(raw);
-};
-
-const pathCandidates = (sitePath) => {
-  const clean = sitePath === '/' ? '/' : sitePath.replace(/\/+$/, '');
-
-  if (clean === '/') {
-    return [path.join(publishDir, 'index.html')];
-  }
-
-  const noLead = clean.replace(/^\//, '');
-  const candidates = [
-    path.join(publishDir, noLead),
-    path.join(publishDir, `${noLead}.html`),
-    path.join(publishDir, noLead, 'index.html')
-  ];
-
-  return [...new Set(candidates)];
-};
+const configPath = path.join(repoRoot, 'sitemap.config.json');
 
 const fileExists = async (target) => {
   try {
@@ -41,63 +19,63 @@ const fileExists = async (target) => {
   }
 };
 
-const main = async () => {
-  const mainPages = await readJson('main-pages.json');
-  const games = await readJson('games.json');
-  const wiki = await readJson('wiki.json');
-
-  const urls = [
-    ...mainPages.map((item) => item.path),
-    ...games.map((item) => `/games/${item.slug}/`),
-    ...wiki.map((item) => `/wiki/${item.slug}/`)
+const candidateFiles = (sitePath) => {
+  if (sitePath === '/') return [path.join(publishDir, 'index.html')];
+  const clean = sitePath.replace(/^\//, '').replace(/\/$/, '');
+  return [
+    path.join(publishDir, `${clean}.html`),
+    path.join(publishDir, clean, 'index.html')
   ];
+};
+
+const walkIndexPages = async (relativeDir, exclusions = []) => {
+  const root = path.join(publishDir, relativeDir);
+  const pages = [];
+  const walk = async (dir) => {
+    const entries = await fs.readdir(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) await walk(full);
+      if (entry.isFile() && entry.name === 'index.html') {
+        const rel = `/${path.relative(publishDir, path.dirname(full)).replaceAll(path.sep, '/')}/`;
+        if (!exclusions.includes(rel)) pages.push(rel);
+      }
+    }
+  };
+  await walk(root);
+  return pages;
+};
+
+const main = async () => {
+  const config = JSON.parse(await fs.readFile(configPath, 'utf8'));
+  const urls = new Set(['/']);
+
+  for (const entries of Object.values(config.staticSitemaps || {})) {
+    for (const item of entries) urls.add(item.path);
+  }
+
+  for (const item of Object.values(config.autoscan || {})) {
+    for (const p of await walkIndexPages(item.dir, item.exclude || [])) urls.add(p);
+  }
 
   const missing = [];
-
   for (const sitePath of urls) {
-    const candidates = pathCandidates(sitePath);
-    let found = false;
-
-    for (const candidate of candidates) {
-      if (await fileExists(candidate)) {
-        found = true;
-        break;
-      }
-    }
-
-    if (!found) {
-      missing.push({ sitePath, candidates });
-    }
+    const found = await Promise.all(candidateFiles(sitePath).map(fileExists));
+    if (!found.some(Boolean)) missing.push(sitePath);
   }
 
-  const requiredGenerated = [
-    '/sitemap.xml',
-    '/sitemaps/main.xml',
-    '/sitemaps/games.xml',
-    '/sitemaps/wiki.xml',
-    '/robots.txt'
-  ];
-
-  for (const sitePath of requiredGenerated) {
-    const absolute = path.join(publishDir, sitePath.replace(/^\//, ''));
-    if (!(await fileExists(absolute))) {
-      missing.push({ sitePath, candidates: [absolute] });
-    }
+  const requiredFiles = ['/sitemap.xml', '/robots.txt', ...(config.sitemaps || []).map((n) => `/sitemaps/${n}.xml`)];
+  for (const rel of requiredFiles) {
+    if (!(await fileExists(path.join(publishDir, rel.replace(/^\//, ''))))) missing.push(rel);
   }
 
-  if (missing.length > 0) {
-    console.error('Site validation failed. Missing files for:');
-    for (const entry of missing) {
-      console.error(`- ${entry.sitePath}`);
-      for (const candidate of entry.candidates) {
-        console.error(`  - checked: ${candidate}`);
-      }
-    }
+  if (missing.length) {
+    console.error('Missing required files/paths:\n' + missing.map((m) => `- ${m}`).join('\n'));
     process.exitCode = 1;
     return;
   }
 
-  console.log(`Validated ${urls.length} listed URLs and required generated files.`);
+  console.log(`Validated ${urls.size} URL targets and ${requiredFiles.length} generated files.`);
 };
 
 main().catch((error) => {

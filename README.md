@@ -2,89 +2,58 @@
 
 DTA Craft website (Cloudflare Pages).
 
-## Site structure conventions
+## Core conventions
 
-- Cloudflare Pages publish directory: `dtacraft-site/`
+- Publish directory: `dtacraft-site/`
 - Canonical base URL: `https://dtacraft.com`
-- Games route convention: `/games/<slug>/` => `dtacraft-site/games/<slug>/index.html`
-- Wiki route convention: `/wiki/<slug>/` => `dtacraft-site/wiki/<slug>/index.html`
+- Shared IA nav across pages: Games, Devlog, Wiki / Rules, Press, Studio, Support
+- Shared legal footer: privacy, terms, credits, and per-game privacy pages
 
-See full conventions in `docs/SITE_CONVENTIONS.md`.
-
-## Sitemap architecture
+## Sitemap architecture (scalable)
 
 - Sitemap index: `dtacraft-site/sitemap.xml`
 - Child sitemaps:
   - `dtacraft-site/sitemaps/main.xml`
   - `dtacraft-site/sitemaps/games.xml`
+  - `dtacraft-site/sitemaps/devlog.xml`
   - `dtacraft-site/sitemaps/wiki.xml`
-- Source-of-truth content files:
-  - `content/main-pages.json`
-  - `content/games.json`
-  - `content/wiki.json`
+  - `dtacraft-site/sitemaps/press.xml`
+  - `dtacraft-site/sitemaps/studio.xml`
+  - `dtacraft-site/sitemaps/support.xml`
+- Config source-of-truth: `sitemap.config.json`
+  - Hybrid strategy: autoscan for `/games/`, `/devlog/`, `/wiki/`; config-driven static lists for top-level pages.
 
-## Add a new game page
+## How to add a new game
 
-1. Create the page file: `dtacraft-site/games/<slug>/index.html`.
-2. Add a record to `content/games.json`:
+1. Create `dtacraft-site/games/<slug>/index.html` using the current game page template structure.
+2. Add game privacy page at `dtacraft-site/games/<slug>/privacy/index.html`.
+3. Add a rules hub at `dtacraft-site/wiki/<slug>/index.html` and section pages:
+   - `quickstart`, `core-rules`, `cards-units-enemies`, `keywords`, `difficulty-modes`, `faq`.
+4. Add a card to `dtacraft-site/games/index.html` with filter metadata (`data-status`, `data-platforms`, `data-genre`).
+5. Add changelog and devlog items in:
+   - `dtacraft-site/assets/changelog.json`
+   - `dtacraft-site/assets/devlog-posts.json`
+6. Regenerate sitemaps.
 
-   ```json
-   {
-     "slug": "<slug>",
-     "lastmod": "YYYY-MM-DD",
-     "changefreq": "monthly",
-     "priority": 0.8
-   }
-   ```
+## How to add a new devlog entry
 
-3. Optionally add a link from `dtacraft-site/games/index.html`.
+1. Add an entry object in `dtacraft-site/assets/devlog-posts.json`.
+2. Use one category:
+   - `release-notes`, `design-notes`, `production-logs`, `postmortems`
+3. Set `game` to one of the game slugs (or `studio`).
+4. Verify filtering on `/devlog/`.
 
-## Add a new wiki page
+## How to add a new wiki page
 
-1. Create the page file: `dtacraft-site/wiki/<slug>/index.html`.
-2. Add a record to `content/wiki.json`:
+1. Place the page at `dtacraft-site/wiki/<slug>/index.html` (or nested under a game hub).
+2. Link the page from its parent rules hub so no nav entry points are broken.
+3. Regenerate sitemaps.
 
-   ```json
-   {
-     "slug": "<slug>",
-     "lastmod": "YYYY-MM-DD"
-   }
-   ```
-
-3. Optionally add a link from `dtacraft-site/wiki/index.html`.
-
-## Regenerate sitemaps
+## Regenerate and validate
 
 ```bash
 npm run sitemap:generate
-```
-
-This regenerates:
-
-- `dtacraft-site/sitemap.xml`
-- `dtacraft-site/sitemaps/main.xml`
-- `dtacraft-site/sitemaps/games.xml`
-- `dtacraft-site/sitemaps/wiki.xml`
-- `dtacraft-site/robots.txt`
-
-## Validate listed URLs and generated files
-
-```bash
 npm run site:validate
 ```
 
-Validation fails if a URL listed in the content JSON files does not resolve to a file inside `dtacraft-site/`, or if required generated files are missing.
-
-## Deploy flow via PR
-
-1. Create/update pages and content JSON entries.
-2. Run:
-
-   ```bash
-   npm run sitemap:generate
-   npm run site:validate
-   ```
-
-3. Commit generated sitemap/robots output with your content changes.
-4. Open a PR.
-5. After merge, Cloudflare Pages deploys from `dtacraft-site/`.
+These commands regenerate sitemap/robots outputs and validate all configured and autoscanned URLs resolve to files.
