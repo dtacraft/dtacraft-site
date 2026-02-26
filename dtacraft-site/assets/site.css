@@ -36,6 +36,6 @@ html[data-theme="light"]{
 
 .navRight{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
 
-#themeToggle{min-width:112px}
-#themeToggle .btnIcon{width:16px;height:16px;display:inline-block}
-#themeToggle:focus-visible{outline:none;box-shadow:var(--focus)}
+[data-theme-toggle],#themeToggle{min-width:112px}
+[data-theme-toggle] .btnIcon,#themeToggle .btnIcon{width:16px;height:16px;display:inline-block}
+[data-theme-toggle]:focus-visible,#themeToggle:focus-visible{outline:none;box-shadow:var(--focus)}
