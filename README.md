@@ -26,12 +26,12 @@ DTA Craft website (Cloudflare Pages).
 ## How to add a new game
 
 1. Create `dtacraft-site/games/<slug>/index.html` using the current game page template structure.
-2. Add game privacy page at `dtacraft-site/games/<slug>/privacy/index.html`.
+2. Add or confirm a game-specific privacy page. If a `*/privacy-policy` URL already exists, keep that file immutable and only link to it.
 3. Add a rules hub at `dtacraft-site/wiki/<slug>/index.html` and section pages:
    - `quickstart`, `core-rules`, `cards-units-enemies`, `keywords`, `difficulty-modes`, `faq`.
 4. Add a card to `dtacraft-site/games/index.html` with filter metadata (`data-status`, `data-platforms`, `data-genre`).
 5. Add changelog and devlog items in:
-   - `dtacraft-site/assets/changelog.json`
+   - `dtacraft-site/content/changelog.json`
    - `dtacraft-site/assets/devlog-posts.json`
 6. Regenerate sitemaps.
 
@@ -57,3 +57,10 @@ npm run site:validate
 ```
 
 These commands regenerate sitemap/robots outputs and validate all configured and autoscanned URLs resolve to files.
+
+## IA maintenance quick guide
+
+- New game: create `/games/<slug>/`, add/verify `/wiki/<slug>/` hub + required rules pages, add the game card to `/games/`, and add a changelog object in `dtacraft-site/content/changelog.json`.
+- New wiki section: create the page under `dtacraft-site/wiki/` and link it from the appropriate hub so no entry point leads to a 404.
+- New devlog page/category: create the new page under `dtacraft-site/devlog/` and add entries in `dtacraft-site/assets/devlog-posts.json`.
+- Regenerate sitemaps after any IA changes: `npm run sitemap:generate`.
