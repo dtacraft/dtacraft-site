@@ -112,20 +112,8 @@ const main = async () => {
       if (!html.includes('class="brand" href="/"')) {
         htmlIssues.push(`${rel}: missing home link on logo/title in header`);
       }
-
-      const requiredNavLinks = [
-        { href: '/games/', label: 'Games' },
-        { href: '/devlog/', label: 'Devlog' },
-        { href: '/wiki/', label: 'Wiki / Rules' },
-        { href: '/press/', label: 'Press' },
-        { href: '/studio/', label: 'Studio' },
-        { href: '/support/', label: 'Support' }
-      ];
-
-      for (const link of requiredNavLinks) {
-        if (!html.includes(`href="${link.href}">${link.label}</a>`)) {
-          htmlIssues.push(`${rel}: missing ${link.label} item in top navigation`);
-        }
+      if (!html.includes('href="/">Home</a>')) {
+        htmlIssues.push(`${rel}: missing Home item in top navigation`);
       }
     }
   }

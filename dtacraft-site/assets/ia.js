@@ -47,12 +47,12 @@
     const nodes = document.querySelectorAll('[data-latest-update]');
     if (!nodes.length) return;
     try {
-      const data = await fetch('/content/changelog.json').then((r) => r.json());
+      const data = await fetch('/assets/changelog.json').then((r) => r.json());
       nodes.forEach((node) => {
         const key = node.dataset.latestUpdate || 'deadhand-protocol';
         const item = data.games[key];
         if (!item) return;
-        node.innerHTML = `<strong>v${item.latest_version || item.version}</strong> · ${item.last_update_date || item.date}<br>${item.short_update_snippet || item.summary}`;
+        node.innerHTML = `<strong>v${item.version}</strong> · ${item.date}<br>${item.summary}`;
       });
     } catch {
       nodes.forEach((node) => { node.textContent = 'Latest update data unavailable.'; });
