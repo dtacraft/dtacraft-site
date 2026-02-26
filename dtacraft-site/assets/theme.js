@@ -15,18 +15,18 @@
     try {
       localStorage.setItem(STORAGE_KEY, value);
     } catch (_err) {
-      /* no-op when storage is blocked */
+      /* ignore storage failures */
     }
   };
+
+  const media = typeof window.matchMedia === 'function'
+    ? window.matchMedia('(prefers-color-scheme: light)')
+    : null;
 
   const getPreferredTheme = () => {
     const saved = safeGet();
     if (saved === 'light' || saved === 'dark') return saved;
-
-    if (typeof window.matchMedia === 'function') {
-      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    }
-
+    if (media) return media.matches ? 'light' : 'dark';
     return 'dark';
   };
 
@@ -41,7 +41,7 @@
       button.prepend(icon);
     }
 
-    let label = button.querySelector('.theme-label, [data-theme-label]');
+    let label = button.querySelector('[data-theme-label], .theme-label');
     if (!label) {
       label = document.createElement('span');
       label.className = 'theme-label';
@@ -60,28 +60,28 @@
     if (!parts) return;
 
     const isLight = theme === 'light';
-    const nextThemeLabel = isLight ? 'Dark' : 'Light';
-    parts.label.textContent = nextThemeLabel;
+    const nextTheme = isLight ? 'dark' : 'light';
+    parts.label.textContent = nextTheme.charAt(0).toUpperCase() + nextTheme.slice(1);
     parts.icon.textContent = isLight ? '🌙' : '☀️';
+
     button.setAttribute('aria-pressed', String(isLight));
-    button.setAttribute('aria-label', `Switch to ${nextThemeLabel} theme`);
+    button.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
   };
 
   const applyTheme = (theme) => {
-    const normalizedTheme = theme === 'light' ? 'light' : 'dark';
-    const isLight = normalizedTheme === 'light';
-    document.documentElement.setAttribute('data-theme', normalizedTheme);
+    const normalized = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = normalized;
 
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', isLight ? LIGHT_COLOR : DARK_COLOR);
+    if (meta) meta.setAttribute('content', normalized === 'light' ? LIGHT_COLOR : DARK_COLOR);
 
     document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
-      updateToggle(button, normalizedTheme);
+      updateToggle(button, normalized);
     });
   };
 
   const toggleTheme = () => {
-    const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    const current = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
     const next = current === 'light' ? 'dark' : 'light';
     safeSet(next);
     applyTheme(next);
@@ -93,6 +93,14 @@
     document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
       button.addEventListener('click', toggleTheme);
     });
+
+    if (media && typeof media.addEventListener === 'function') {
+      media.addEventListener('change', () => {
+        const saved = safeGet();
+        if (saved === 'light' || saved === 'dark') return;
+        applyTheme(media.matches ? 'light' : 'dark');
+      });
+    }
   };
 
   if (document.readyState === 'loading') {
