@@ -72,6 +72,16 @@
       label.setAttribute('data-theme-label', '');
     }
 
+    for (const node of Array.from(button.childNodes)) {
+      if (node === icon || node === label) continue;
+      if (node.nodeType === Node.TEXT_NODE || node.nodeType === Node.ELEMENT_NODE) {
+        node.remove();
+      }
+    }
+
+    if (button.firstChild !== icon) button.prepend(icon);
+    if (icon.nextSibling !== label) button.insertBefore(label, icon.nextSibling);
+
     return { icon, label };
   };
 
