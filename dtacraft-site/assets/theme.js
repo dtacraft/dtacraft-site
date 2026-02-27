@@ -1,54 +1,73 @@
 (() => {
-  const STORAGE_KEY = 'theme';
-  const LEGACY_STORAGE_KEYS = ['dtacraft_theme', 'site_theme'];
-  const VALID_THEMES = new Set(['light', 'dark', 'system']);
+  const STORAGE_KEY = 'dtacraft_theme';
+  const LEGACY_STORAGE_KEYS = ['theme', 'site_theme'];
+  const COOKIE_KEY = 'dtacraft_theme';
   const DARK_COLOR = '#070a0f';
   const LIGHT_COLOR = '#f4f2ee';
-  const mediaQuery =
-    typeof window.matchMedia === 'function'
-      ? window.matchMedia('(prefers-color-scheme: dark)')
-      : null;
 
-  let preferredTheme = 'system';
-
-  const normalizeTheme = (value) => (VALID_THEMES.has(value) ? value : null);
-
-  const getStoredTheme = () => {
+  const safeGet = () => {
     try {
-      const stored = normalizeTheme(localStorage.getItem(STORAGE_KEY));
-      if (stored) return stored;
+      const primary = localStorage.getItem(STORAGE_KEY);
+      if (primary === 'light' || primary === 'dark') return primary;
 
       for (const key of LEGACY_STORAGE_KEYS) {
-        const legacy = normalizeTheme(localStorage.getItem(key));
-        if (legacy) return legacy;
+        const legacyValue = localStorage.getItem(key);
+        if (legacyValue === 'light' || legacyValue === 'dark') return legacyValue;
       }
-    } catch (_error) {
-      // no-op when storage is blocked
-    }
 
-    return 'system';
+      return null;
+    } catch (_err) {
+      return null;
+    }
   };
 
-  const setStoredTheme = (theme) => {
-    if (!VALID_THEMES.has(theme)) return;
-
+  const readCookieTheme = () => {
     try {
-      localStorage.setItem(STORAGE_KEY, theme);
+      const pairs = document.cookie ? document.cookie.split(';') : [];
+      for (const pair of pairs) {
+        const [rawKey, rawValue = ''] = pair.split('=');
+        const key = rawKey.trim();
+        if (key !== COOKIE_KEY) continue;
+
+        const value = decodeURIComponent(rawValue.trim());
+        if (value === 'light' || value === 'dark') return value;
+      }
+    } catch (_err) {
+      return null;
+    }
+
+    return null;
+  };
+
+  const safeSet = (value) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, value);
       for (const key of LEGACY_STORAGE_KEYS) {
         localStorage.removeItem(key);
       }
-    } catch (_error) {
-      // no-op when storage is blocked
+    } catch (_err) {
+      /* no-op when storage is blocked */
+    }
+
+    try {
+      const maxAge = 60 * 60 * 24 * 365;
+      const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+      document.cookie = `${COOKIE_KEY}=${encodeURIComponent(value)}; Max-Age=${maxAge}; Path=/; SameSite=Lax${secure}`;
+    } catch (_err) {
+      /* no-op when cookies are blocked */
     }
   };
 
-  const getSystemTheme = () => {
-    if (!mediaQuery) return 'dark';
-    return mediaQuery.matches ? 'dark' : 'light';
-  };
+  const getPreferredTheme = () => {
+    const saved = safeGet() || readCookieTheme();
+    if (saved === 'light' || saved === 'dark') return saved;
 
-  const getAppliedTheme = () =>
-    preferredTheme === 'system' ? getSystemTheme() : preferredTheme;
+    if (typeof window.matchMedia === 'function') {
+      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+
+    return 'dark';
+  };
 
   const ensureToggleContents = (button) => {
     if (!button) return null;
@@ -85,67 +104,44 @@
     return { icon, label };
   };
 
-  const updateToggle = (button) => {
+  const updateToggle = (button, theme) => {
     const parts = ensureToggleContents(button);
     if (!parts) return;
 
-    const appliedTheme = getAppliedTheme();
-    const nextTheme = appliedTheme === 'dark' ? 'light' : 'dark';
-    parts.icon.textContent = preferredTheme === 'system' ? '🖥️' : appliedTheme === 'light' ? '🌙' : '☀️';
-    parts.label.textContent = `Theme: ${preferredTheme === 'system' ? 'System' : appliedTheme === 'light' ? 'Light' : 'Dark'}`;
-    button.setAttribute('aria-pressed', String(appliedTheme === 'light'));
-    button.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
-    button.setAttribute('title', 'Click: toggle light/dark · Shift+Click: use system theme');
+    const isLight = theme === 'light';
+    const nextThemeLabel = isLight ? 'Dark' : 'Light';
+    parts.label.textContent = nextThemeLabel;
+    parts.icon.textContent = isLight ? '🌙' : '☀️';
+    button.setAttribute('aria-pressed', String(isLight));
+    button.setAttribute('aria-label', `Switch to ${nextThemeLabel} theme`);
   };
 
-  const updateThemeColorMeta = (appliedTheme) => {
+  const applyTheme = (theme) => {
+    const normalizedTheme = theme === 'light' ? 'light' : 'dark';
+    const isLight = normalizedTheme === 'light';
+    document.documentElement.setAttribute('data-theme', normalizedTheme);
+
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', appliedTheme === 'light' ? LIGHT_COLOR : DARK_COLOR);
+    if (meta) meta.setAttribute('content', isLight ? LIGHT_COLOR : DARK_COLOR);
+
+    document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+      updateToggle(button, normalizedTheme);
+    });
   };
 
-  const renderTheme = () => {
-    const appliedTheme = getAppliedTheme();
-    document.documentElement.dataset.theme = appliedTheme;
-    document.documentElement.dataset.themePreference = preferredTheme;
-    updateThemeColorMeta(appliedTheme);
-    document.querySelectorAll('[data-theme-toggle], #themeToggle').forEach(updateToggle);
-  };
-
-  const setTheme = (theme) => {
-    const normalized = normalizeTheme(theme) || 'system';
-    preferredTheme = normalized;
-    setStoredTheme(normalized);
-    renderTheme();
-  };
-
-  const toggleTheme = (event) => {
-    if (event.shiftKey) {
-      setTheme('system');
-      return;
-    }
-
-    const appliedTheme = getAppliedTheme();
-    setTheme(appliedTheme === 'dark' ? 'light' : 'dark');
-  };
-
-  const onToggleClick = (event) => {
-    const toggle = event.target.closest('[data-theme-toggle], #themeToggle');
-    if (!toggle) return;
-    event.preventDefault();
-    toggleTheme(event);
+  const toggleTheme = () => {
+    const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    const next = current === 'light' ? 'dark' : 'light';
+    safeSet(next);
+    applyTheme(next);
   };
 
   const initialize = () => {
-    preferredTheme = getStoredTheme();
-    renderTheme();
+    applyTheme(getPreferredTheme());
 
-    document.addEventListener('click', onToggleClick);
-
-    if (mediaQuery) {
-      mediaQuery.addEventListener('change', () => {
-        if (preferredTheme === 'system') renderTheme();
-      });
-    }
+    document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+      button.addEventListener('click', toggleTheme);
+    });
   };
 
   if (document.readyState === 'loading') {

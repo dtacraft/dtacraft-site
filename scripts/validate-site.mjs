@@ -90,7 +90,7 @@ const main = async () => {
   }
 
   const htmlIssues = [];
-  const requiredThemeIncludes = ['/assets/theme.css', '/assets/site.css', '/assets/theme.js'];
+  const requiredThemeIncludes = ['/assets/theme.css', '/assets/site.css', '/assets/theme.js', '/assets/site.js'];
   const requiredFontToken = 'fonts.googleapis.com/css2?family=Cinzel';
   const htmlPages = await walkHtmlPages();
 
