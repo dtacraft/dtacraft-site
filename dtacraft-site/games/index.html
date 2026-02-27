@@ -1,22 +1,40 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Browse DTA Craft games."/><link rel="canonical" href="https://dtacraft.com/games/"/><meta name="theme-color" content="#070a0f"/><title>DTA Craft Games</title><link rel="icon" href="/assets/favicon.png" type="image/png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Noto+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" /><link rel="stylesheet" href="/assets/theme.css"/><link rel="stylesheet" href="/assets/site.css"/><link rel="stylesheet" href="/assets/design-system.css"/><script src="/assets/theme.js" defer></script><script src="/assets/site.js" defer></script><script src="/assets/ia.js" defer></script></head><body><div class="wrap"><header class="nav">
-  <a class="brand" href="/" aria-label="DTA Craft home"><div class="mark" aria-hidden="true"><img src="/assets/logo.png" alt="" /></div><div><div>DTA Craft</div><small>Independent Game Studio</small></div></a>
-  <div class="navRight">
-    <nav class="navlinks" aria-label="Primary">
-      <a href="/games/">Games</a><a href="/devlog/">Devlog</a><a href="/wiki/">Wiki / Rules</a><a href="/press/">Press</a><a href="/studio/">Studio</a><a href="/support/">Support</a>
-    </nav>
-    <button class="btn ghost small" type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false"><span class="theme-icon" aria-hidden="true"></span><span class="theme-label" data-theme-label>Theme: Dark</span></button>
-  </div>
-</header><main><section class="page-intro"><div class="kicker"><span class="dot"></span> Release catalog</div><h1>Games</h1><p class="sub">Filter by status, platform, and genre.</p></section>
-<section class="section"><div class="filter-bar"><select id="filter-status"><option value="all">Status: All</option><option value="released">Released</option><option value="in-dev">In Dev</option></select><select id="filter-platform"><option value="all">Platform: All</option><option value="google-play">Google Play</option><option value="steam">Steam</option><option value="itch">itch.io</option></select><select id="filter-genre"><option value="all">Genre: All</option><option value="tactical-cards">Tactical Cards</option><option value="strategy">Strategy</option></select></div>
-<div class="grid">
-<article class="card" data-game-card data-status="released" data-platforms="google-play" data-genre="tactical-cards"><img class="game-thumb" src="/assets/placeholders-game-thumb.svg" alt="Deadhand Protocol thumbnail"/><h3>Deadhand Protocol</h3><p>A grim tactical card game about irreversible decisions.</p><div class="meta-list"><div>Release: 18/01/2026 (Google Play)</div><div>Latest: v1.2.0</div></div><div class="actions"><a class="btn primary" href="/games/deadhand-protocol/">View game</a><a class="btn" href="https://play.google.com/store/apps/details?id=com.dtacraft.deadhandprotocol" target="_blank" rel="noopener">Google Play</a></div></article>
-<article class="card" data-game-card data-status="in-dev" data-platforms="google-play steam" data-genre="strategy"><img class="game-thumb" src="/assets/placeholders-game-thumb.svg" alt="Collapse State thumbnail"/><h3>Collapse State</h3><p>Escalating strategy systems under controlled failure pressure.</p><div class="meta-list"><div>Release: In development</div><div>Latest: v0.4.0-dev</div></div><div class="actions"><a class="btn primary" href="/games/collapse-state/">View game</a></div></article>
-<article class="card" data-game-card data-status="in-dev" data-platforms="itch steam" data-genre="strategy"><img class="game-thumb" src="/assets/placeholders-game-thumb.svg" alt="Tenebris thumbnail"/><h3>Tenebris</h3><p>Dark tactical progression with strict information economy.</p><div class="meta-list"><div>Release: In development</div><div>Latest: v0.3.2-dev</div></div><div class="actions"><a class="btn primary" href="/games/tenebris/">View game</a></div></article>
-</div></section></main><footer class="footer"><div class="footer-columns">
-<div><h4>Games</h4><ul class="list-tight"><li><a href="/games/deadhand-protocol/">Deadhand Protocol</a></li><li><a href="/games/collapse-state/">Collapse State</a></li><li><a href="/games/tenebris/">Tenebris</a></li></ul></div>
-<div><h4>Studio</h4><ul class="list-tight"><li><a href="/studio/">About</a></li><li><a href="/press/">Press</a></li><li><a href="/support/">Support</a></li></ul></div>
-<div><h4>Legal</h4><ul class="list-tight"><li><a href="/privacy/">Privacy</a></li><li><a href="/terms/">Terms</a></li><li><a href="/credits/">Credits</a></li><li><a href="/deadhand-protocol/privacy-policy.html">Deadhand Privacy</a></li><li><a href="/collapse-state/privacy-policy.html">Collapse Privacy</a></li><li><a href="/tenebris/privacy-policy.html">Tenebris Privacy</a></li></ul></div>
-</div><div>© <span id="y"></span> DTA Craft</div></footer><script>document.getElementById('y').textContent=new Date().getFullYear();</script></div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Games — DTA CRAFT</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script defer src="/assets/js/site.js"></script>
+</head>
+<body>
+  <div data-include="header"></div>
+  <main class="section">
+    <div class="container">
+      <h1 class="page-title">Games</h1>
+      <p class="page-lead">Three original tactical universes in active development. Each game supports standalone progression and long-term updates.</p>
+      <div class="grid" style="margin-top:1.2rem;">
+        <article class="card">
+          <span class="tag">Card Tactics</span>
+          <h3>Deadhand Protocol</h3>
+          <p>A cyber-occult deck strategy title focused on precision sequencing and high-stakes enemy scripting.</p>
+          <a class="button button-secondary" href="/games/deadhand-protocol.html">View game</a>
+        </article>
+        <article class="card">
+          <span class="tag">Roguelite Systems</span>
+          <h3>Collapse State</h3>
+          <p>Lead a fractured task force through dynamic mission trees with escalating procedural modifiers.</p>
+          <a class="button button-secondary" href="/games/collapse-state.html">View game</a>
+        </article>
+        <article class="card">
+          <span class="tag">Dark Fantasy</span>
+          <h3>Tenebris</h3>
+          <p>A turn-based saga of relics and kingdoms where battlefield control and timing decide every campaign.</p>
+          <a class="button button-secondary" href="/games/tenebris.html">View game</a>
+        </article>
+      </div>
+    </div>
+  </main>
+  <div data-include="footer"></div>
+</body>
+</html>

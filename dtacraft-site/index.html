@@ -1,225 +1,46 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="DTA Craft is an independent game studio building cinematic, high-intensity games." />
-  <meta name="theme-color" content="#05070d" />
-  <link rel="canonical" href="https://dtacraft.com/" />
-
-  <meta property="og:title" content="DTA Craft" />
-  <meta property="og:description" content="Cinematic games, competitive systems, and live updates from DTA Craft." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dtacraft.com/" />
-  <meta property="og:image" content="https://dtacraft.com/og-image.jpg" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DTA Craft" />
-  <meta name="twitter:description" content="Cinematic games, competitive systems, and live updates from DTA Craft." />
-  <meta name="twitter:image" content="https://dtacraft.com/og-image.jpg" />
-
-  <title>DTA Craft</title>
-  <link rel="icon" href="/assets/favicon.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Noto+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/theme.css" />
-  <link rel="stylesheet" href="/assets/site.css" />
-  <script src="/assets/theme.js" defer></script>
-  <script src="/assets/site.js" defer></script>
-
-  <style>
-    :root{
-      --bg:#05070d;
-      --bg-soft:#0b1020;
-      --panel:#0e1630;
-      --line:rgba(255,255,255,.13);
-      --text:#f3f6ff;
-      --muted:#b9c6ea;
-      --accent:#14b8ff;
-      --accent-2:#7c4dff;
-      --hero-overlay-start:rgba(1,4,9,.85);
-      --hero-overlay-end:rgba(1,4,9,.25);
-      --bg-glow-a:rgba(20,184,255,.18);
-      --bg-glow-b:rgba(124,77,255,.16);
-      --bg-gradient-start:#03050a;
-      --bg-gradient-end:#060b16;
-      --radius:20px;
-      --shadow:0 20px 60px rgba(0,0,0,.45);
-      --max:1200px;
-    }
-
-    html[data-theme="light"]{
-      --bg:#f4f2ee;
-      --bg-soft:#ffffff;
-      --panel:#ffffff;
-      --line:rgba(16,19,24,.14);
-      --text:#101318;
-      --muted:#24344d;
-      --accent:#1d9bf0;
-      --accent-2:#6d57d9;
-      --hero-overlay-start:rgba(255,255,255,.78);
-      --hero-overlay-end:rgba(255,255,255,.26);
-      --bg-glow-a:rgba(29,155,240,.12);
-      --bg-glow-b:rgba(109,87,217,.10);
-      --bg-gradient-start:#f8f6f2;
-      --bg-gradient-end:#ece8df;
-      --shadow:0 16px 40px rgba(14,21,32,.16);
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(70rem 32rem at 80% -10%, var(--bg-glow-a), transparent 60%),
-        radial-gradient(60rem 26rem at 10% -8%, var(--bg-glow-b), transparent 62%),
-        linear-gradient(180deg,var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-      min-height:100vh;
-    }
-    a{color:inherit;text-decoration:none}
-
-    .container{max-width:var(--max);margin:0 auto;padding:24px 20px 80px}
-
-    .hero{margin-top:28px;border-radius:var(--radius);overflow:hidden;position:relative;min-height:520px;border:1px solid var(--line);box-shadow:var(--shadow)}
-    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--hero-overlay-start),var(--hero-overlay-end));z-index:1}
-    .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .hero-content{position:relative;z-index:2;max-width:560px;padding:64px 56px}
-    .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9cdfff;font-weight:700}
-    h1{font-family:Montserrat,sans-serif;font-size:56px;line-height:1.03;margin:12px 0}
-    .hero p{font-size:18px;color:var(--muted);margin:0 0 24px}
-    .cta{display:flex;gap:12px;flex-wrap:wrap}
-    .cta a{padding:12px 18px;border-radius:999px;font-weight:800}
-    .cta .primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white}
-    .cta .secondary{border:1px solid var(--line);background:rgba(255,255,255,.05)}
-
-    .feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
-    .tile{padding:18px;border-radius:16px;border:1px solid var(--line);background:rgba(11,16,32,.7)}
-    .tile strong{display:block;font-family:Montserrat,sans-serif;font-size:26px}
-    .tile span{color:var(--muted);font-size:14px}
-
-    .section{margin-top:64px}
-    .section h2{font-family:Montserrat,sans-serif;font-size:34px;margin:0 0 12px}
-    .section p{color:var(--muted);margin:0 0 20px}
-
-    .games{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .game{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);min-height:260px}
-    .game img{width:100%;height:100%;object-fit:cover;display:block}
-    .game .overlay{position:absolute;inset:auto 0 0 0;padding:16px;background:linear-gradient(180deg,transparent,rgba(4,8,16,.95))}
-    .game h3{margin:0;font-family:Montserrat,sans-serif}
-
-    .updates{display:grid;grid-template-columns:2fr 1fr;gap:18px}
-    .news, .social{border:1px solid var(--line);border-radius:16px;background:rgba(11,16,32,.65);padding:20px}
-    .news ul{margin:0;padding-left:20px;color:var(--muted);display:grid;gap:10px}
-
-    footer{margin-top:62px;border-top:1px solid var(--line);padding-top:24px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-
-    @media (max-width:1000px){
-      h1{font-size:44px}
-      .games{grid-template-columns:1fr 1fr}
-      .feature-row{grid-template-columns:1fr}
-      .updates{grid-template-columns:1fr}
-    }
-    @media (max-width:700px){
-      .topbar{border-radius:16px;position:static}
-      .hero-content{padding:36px 24px}
-      h1{font-size:36px}
-      .games{grid-template-columns:1fr}
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DTA CRAFT — Dark Strategy Game Studio</title>
+  <meta name="description" content="DTA CRAFT builds premium dark-fantasy strategy games for PC and mobile.">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script defer src="/assets/js/site.js"></script>
 </head>
 <body>
-  <div class="container">
-    <header class="nav site-header topbar">
-      <a class="brand" href="/" aria-label="DTA Craft Home">
-        <span class="mark" aria-hidden="true"><img src="/assets/logo.png" alt="" /></span>
-        <span>DTA CRAFT</span>
-      </a>
-      <div class="navRight">
-      <nav class="navlinks" aria-label="Main">
-        <a class="active" href="/">Home</a>
-        <a href="/games/">Games</a>
-        <a href="/devlog/">News</a>
-        <a href="/wiki/">Wiki</a>
-        <a href="/press/">Press</a>
-        <a href="/support/">Support</a>
-      </nav>
-      <button class="btn ghost small" id="themeToggle" type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false"><span class="theme-icon" aria-hidden="true"></span><span class="theme-label" data-theme-label>Theme: Dark</span></button>
-      </div>
-    </header>
-
-    <section class="hero" aria-labelledby="hero-title">
-      <img src="/assets/hero.jpg" alt="DTA Craft featured artwork" />
-      <div class="hero-content">
-        <p class="eyebrow">Featured Experience</p>
-        <h1 id="hero-title">Play like every second matters.</h1>
-        <p>Built to feel premium and global: bold art, action-forward presentation, and always-on live content.</p>
-        <div class="cta">
-          <a class="primary" href="/games/">Explore Games</a>
-          <a class="secondary" href="/devlog/">Latest Updates</a>
-        </div>
+  <div data-include="header"></div>
+  <main>
+    <section class="hero container">
+      <span class="pill">Original Studio Site Rebuild</span>
+      <h1>Dark worlds. Tactical systems. Zero noise.</h1>
+      <p>We craft focused strategy experiences with premium art direction, readable game systems, and long-term live support. Built for players who enjoy mastery and atmosphere.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="/games/index.html">Explore Games</a>
+        <a class="button button-secondary" href="/news/index.html">Read Devlog</a>
       </div>
     </section>
 
-    <section class="feature-row" aria-label="Studio highlights">
-      <article class="tile"><strong>03</strong><span>Live projects in active development</span></article>
-      <article class="tile"><strong>Weekly</strong><span>Balance patches, events, and community drops</span></article>
-      <article class="tile"><strong>Cross-Platform</strong><span>PC-first roadmap expanding to mobile channels</span></article>
-    </section>
-
-    <section class="section" id="featured-games">
-      <h2>Featured Games</h2>
-      <p>A showcase inspired by modern AAA game portals: cinematic key art, focused messaging, and direct path to each universe.</p>
-      <div class="games">
-        <a class="game" href="/games/deadhand-protocol/">
-          <img src="/assets/screen_1.jpg" alt="Deadhand Protocol" />
-          <div class="overlay"><h3>Deadhand Protocol</h3></div>
-        </a>
-        <a class="game" href="/games/tenebris/">
-          <img src="/assets/screen_3.jpg" alt="Tenebris" />
-          <div class="overlay"><h3>Tenebris</h3></div>
-        </a>
-        <a class="game" href="/games/collapse-state/">
-          <img src="/assets/screen_5.jpg" alt="Collapse State" />
-          <div class="overlay"><h3>Collapse State</h3></div>
-        </a>
+    <section class="section">
+      <div class="container grid">
+        <article class="card">
+          <span class="tag">Production</span>
+          <h3>AAA-style pipeline</h3>
+          <p>From concept to post-launch, every project follows strict quality gates for design, UX, balance, and accessibility.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Technology</span>
+          <h3>System-first design</h3>
+          <p>Our gameplay stacks are tuned for tactical depth and replayability, with clear progression loops and high readability.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Community</span>
+          <h3>Direct communication</h3>
+          <p>Weekly updates, practical patch notes, and transparent iteration informed by real player behavior and feedback.</p>
+        </article>
       </div>
     </section>
-
-    <section class="section updates">
-      <article class="news">
-        <h2>What’s New</h2>
-        <p>Keep players engaged with ongoing announcements, feature drops, and release notes.</p>
-        <ul>
-          <li>Seasonal challenge events roll out across all active titles.</li>
-          <li>Visual refresh of homepage and game discovery to highlight featured content.</li>
-          <li>Studio roadmap updates published weekly in the devlog.</li>
-        </ul>
-      </article>
-      <article class="social">
-        <h2>Community</h2>
-        <p>Join playtests, track changelogs, and access support channels.</p>
-        <div class="cta">
-          <a class="secondary" href="/devlog/changelog/">Changelog</a>
-          <a class="secondary" href="/support/">Player Support</a>
-        </div>
-      </article>
-    </section>
-
-    <footer>
-      <span>© <span id="year"></span> DTA Craft</span>
-      <span>
-        <a href="/studio/">Studio</a> ·
-        <a href="/terms/">Terms</a> ·
-        <a href="/privacy/">Privacy</a>
-      </span>
-    </footer>
-  </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  </main>
+  <div data-include="footer"></div>
 </body>
 </html>
