@@ -18,20 +18,20 @@
 
 html[data-theme="light"]{
   color-scheme: light;
-  --bg:#f4f2ee;
-  --bg2:#ffffff;
+  --bg:#f8f6f2;
+  --bg2:#ece8df;
   --panel:#ffffff;
-  --panel-soft:rgba(255,255,255,.78);
-  --panel-alt:rgba(255,255,255,.62);
+  --panel-soft:rgba(255,255,255,.9);
+  --panel-alt:rgba(255,255,255,.74);
   --text:#101318;
-  --muted:#4a5568;
-  --line:rgba(16,19,24,.14);
-  --ember:#9b5b2b;
-  --amber:#c97b18;
-  --btn:#2b1d12;
-  --btn2:#3a2617;
-  --shadow:0 12px 28px rgba(0,0,0,.14);
-  --focus:0 0 0 3px rgba(155,91,43,.22);
+  --muted:#2f3f57;
+  --line:rgba(16,19,24,.2);
+  --ember:#1d9bf0;
+  --amber:#216ddf;
+  --btn:#1d9bf0;
+  --btn2:#216ddf;
+  --shadow:0 16px 36px rgba(14,21,32,.16);
+  --focus:0 0 0 3px rgba(29,155,240,.26);
 }
 
 .navRight{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
