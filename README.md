@@ -49,6 +49,20 @@ DTA Craft website (Cloudflare Pages).
 2. Link the page from its parent rules hub so no nav entry points are broken.
 3. Regenerate sitemaps.
 
+
+## Branding binary workflow (Codex limitation)
+
+Codex PRs cannot carry binary diffs reliably (for example `.png`).
+
+- Generate branding outputs locally into `.generated/branding` (default):
+
+```bash
+python scripts/generate_branding_assets.py
+```
+
+- Keep generated binaries out of git (see `.gitignore`).
+- If a binary logo/icon update is needed, create the PR with text changes first, then upload PNG files manually in GitHub UI as a follow-up step.
+
 ## Regenerate and validate
 
 ```bash
