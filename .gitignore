@@ -1,0 +1,4 @@
+
+# Generated branding binaries (Codex PRs do not support binary file diffs)
+.generated/
+dtacraft-site/assets/branding/*.png
