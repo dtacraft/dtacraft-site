@@ -32,12 +32,15 @@
         return matchQ && matchC && matchG;
       });
 
-      list.innerHTML = filtered.map((post) => `
+      list.innerHTML = filtered.map((post) => {
+        const title = post.url ? `<a href="${post.url}">${post.title}</a>` : post.title;
+        return `
         <article class="card">
-          <h3>${post.title}</h3>
+          <h3>${title}</h3>
           <p>${post.excerpt}</p>
           <div class="badges"><span class="badge">${post.category}</span><span class="badge">${post.date}</span><span class="badge">${post.game}</span></div>
-        </article>`).join('') || '<p>No posts match current filters.</p>';
+        </article>`;
+      }).join('') || '<p>No posts match current filters.</p>';
     } catch {
       list.innerHTML = '<p>Unable to load devlog entries.</p>';
     }
