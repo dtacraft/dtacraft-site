@@ -133,3 +133,8 @@ img { max-width: 100%; height: auto; }
   .header-inner { grid-template-columns: 1fr; padding: 0.8rem 0; }
   .brand, .header-actions { justify-self: center; }
 }
+
+
+.media-highlight { margin-top: 1.2rem; }
+.media-highlight h2 { margin: 0 0 0.45rem; font-size: clamp(1.2rem, 2.2vw, 1.5rem); }
+.media-highlight p { margin: 0; color: var(--text-muted); max-width: 70ch; }
