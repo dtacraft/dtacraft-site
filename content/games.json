@@ -16,5 +16,11 @@
     "lastmod": "2026-02-24",
     "changefreq": "monthly",
     "priority": 0.7
+  },
+  {
+    "slug": "terminal-bastion",
+    "lastmod": "2026-03-10",
+    "changefreq": "monthly",
+    "priority": 0.8
   }
 ]
