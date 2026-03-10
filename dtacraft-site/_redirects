@@ -1,0 +1,3 @@
+# Ensure Tenebris privacy URL always resolves to the policy page (not app store redirects)
+/tenebris/privacy-policy   /tenebris/privacy-policy/   301!
+/tenebris/privacy-policy/  /tenebris/privacy-policy/index.html   200
