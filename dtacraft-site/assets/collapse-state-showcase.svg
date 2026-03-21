@@ -1,0 +1,59 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0A0C11"/>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity="0.6">
+    <path d="M0 730L330 420L520 510L790 240L1020 360L1230 170L1600 360V900H0V730Z" fill="url(#embers)"/>
+    <path d="M0 760L300 470L525 610L770 310L1015 430L1300 250L1600 450" stroke="#CF7B3E" stroke-width="2.5" stroke-opacity="0.5"/>
+  </g>
+  <g opacity="0.16">
+    <path d="M165 118H478" stroke="#E9EDF8"/>
+    <path d="M1170 146H1435" stroke="#E9EDF8"/>
+    <path d="M1022 695H1380" stroke="#E9EDF8"/>
+    <path d="M128 708H462" stroke="#E9EDF8"/>
+  </g>
+  <g>
+    <rect x="170" y="160" width="276" height="342" rx="18" transform="rotate(-14 170 160)" fill="#181C24" stroke="#6C4322" stroke-width="4"/>
+    <rect x="225" y="233" width="166" height="172" rx="12" fill="url(#card1)"/>
+    <circle cx="400" cy="202" r="18" fill="#C4834C" fill-opacity="0.18" stroke="#D59D6D"/>
+    <text x="246" y="207" fill="#F3E8D9" font-family="Arial, sans-serif" font-size="38" font-weight="700">HARD RESET</text>
+  </g>
+  <g>
+    <rect x="515" y="102" width="300" height="374" rx="18" transform="rotate(5 515 102)" fill="#181C24" stroke="#6C4322" stroke-width="4"/>
+    <rect x="568" y="188" width="186" height="190" rx="12" fill="url(#card2)"/>
+    <circle cx="756" cy="152" r="18" fill="#C4834C" fill-opacity="0.18" stroke="#D59D6D"/>
+    <text x="575" y="168" fill="#F3E8D9" font-family="Arial, sans-serif" font-size="40" font-weight="700">BLOOD LOAN</text>
+  </g>
+  <g>
+    <rect x="844" y="150" width="284" height="346" rx="18" transform="rotate(13 844 150)" fill="#181C24" stroke="#6C4322" stroke-width="4"/>
+    <rect x="900" y="230" width="168" height="176" rx="12" fill="url(#card3)"/>
+    <circle cx="1082" cy="221" r="18" fill="#C4834C" fill-opacity="0.18" stroke="#D59D6D"/>
+    <text x="900" y="208" fill="#F3E8D9" font-family="Arial, sans-serif" font-size="36" font-weight="700">TACTICAL DRAG</text>
+  </g>
+  <rect y="720" width="1600" height="180" fill="#0A1218" fill-opacity="0.88"/>
+  <text x="126" y="785" fill="#E9EDF8" font-family="Georgia, serif" font-size="84" font-weight="700" letter-spacing="3">COLLAPSE STATE</text>
+  <text x="126" y="842" fill="#B6BECE" font-family="Arial, sans-serif" font-size="30" letter-spacing="3">CARD-DRIVEN ROGUELITE SYSTEMS UNDER STRATEGIC PRESSURE</text>
+  <defs>
+    <linearGradient id="bg" x1="240" y1="45" x2="1320" y2="801" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B1411"/>
+      <stop offset="0.45" stop-color="#0B0D12"/>
+      <stop offset="1" stop-color="#130F0C"/>
+    </linearGradient>
+    <linearGradient id="embers" x1="800" y1="170" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C7773A" stop-opacity="0"/>
+      <stop offset="1" stop-color="#C7773A" stop-opacity="0.22"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="225" y1="233" x2="391" y2="405" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6B4B33"/>
+      <stop offset="1" stop-color="#1A1716"/>
+    </linearGradient>
+    <linearGradient id="card2" x1="568" y1="188" x2="754" y2="378" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7A3F22"/>
+      <stop offset="0.55" stop-color="#5B2016"/>
+      <stop offset="1" stop-color="#1A1517"/>
+    </linearGradient>
+    <linearGradient id="card3" x1="900" y1="230" x2="1068" y2="406" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#454447"/>
+      <stop offset="1" stop-color="#17191D"/>
+    </linearGradient>
+  </defs>
+</svg>
