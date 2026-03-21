@@ -17,7 +17,6 @@
       const href = new URL(link.getAttribute('href'), window.location.origin).pathname.replace(/\/$/, '');
       if (href === currentPath) {
         link.setAttribute('aria-current', 'page');
-        link.style.color = 'var(--text)';
       }
     });
   }
