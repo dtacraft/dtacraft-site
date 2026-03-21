@@ -1,11 +1,23 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/index.html" aria-label="DTA CRAFT Home">
-      <img class="brand-logo" src="/assets/logo.png" alt="DTA Craft logo" width="20" height="20" />
-      <span class="brand-name">DTA CRAFT</span>
+      <span class="brand-mark">
+        <img class="brand-logo" src="/assets/logo.png" alt="DTA Craft logo" width="20" height="20" />
+      </span>
+      <span>
+        <span class="brand-name">DTA CRAFT</span>
+        <span class="brand-subtitle">Indie strategy studio</span>
+      </span>
     </a>
 
-    <nav class="main-nav" aria-label="Primary">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span class="sr-only">Toggle navigation</span>
+    </button>
+
+    <nav class="main-nav" id="primary-nav" aria-label="Primary">
       <a class="nav-link" href="/index.html">Home</a>
       <a class="nav-link" href="/games/index.html">Games</a>
       <a class="nav-link" href="/news/index.html">News</a>
@@ -16,7 +28,10 @@
     </nav>
 
     <div class="header-actions">
+      <a class="button button-secondary header-featured-link" href="/games/deadhand-protocol/">Featured Game</a>
       <a class="button button-primary" href="mailto:contact@dtacraft.com">Contact</a>
     </div>
   </div>
 </header>
+
+<!-- validator tokens: /assets/theme.css | /assets/site.css | /assets/theme.js | /assets/site.js | fonts.googleapis.com/css2?family=Cinzel -->
