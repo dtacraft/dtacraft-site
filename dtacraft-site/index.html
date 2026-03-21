@@ -11,34 +11,156 @@
 <body>
   <div data-include="header"></div>
   <main>
-    <section class="hero container">
-      <span class="pill">Independent Game Studio</span>
-      <h1>Dark worlds. Tactical systems. Zero noise.</h1>
-      <p>We craft focused strategy experiences with premium art direction, readable game systems, and long-term live support. Built for players who enjoy mastery and atmosphere.</p>
-      <div class="hero-actions">
-        <a class="button button-primary" href="/games/index.html">Explore Games</a>
-        <a class="button button-secondary" href="/devlog/">Read Devlog</a>
-        <a class="button button-secondary" href="/devlog/deadhand-protocol-1-3-0/">Deadhand v1.3.0 Notes</a>
+    <section class="hero hero-home container">
+      <div class="hero-copy">
+        <span class="pill">Independent Game Studio</span>
+        <h1>Dark strategy worlds, presented through the games first.</h1>
+        <p>DTA CRAFT builds premium tactical experiences with strong visual identity, readable combat systems, and practical live support. The homepage now leads with the portfolio instead of stacking too much copy above the fold.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="/games/index.html">Explore Games</a>
+          <a class="button button-secondary" href="/games/deadhand-protocol/">Featured: Deadhand Protocol</a>
+        </div>
+        <ul class="hero-bullets" aria-label="Studio strengths">
+          <li>Focused tactical game lineup</li>
+          <li>Premium, no-noise player experience</li>
+          <li>Patch notes, wiki support, and press-ready pages</li>
+        </ul>
+      </div>
+
+      <div class="hero-media-grid" aria-label="Game artwork preview">
+        <article class="media-card media-card-primary card">
+          <img src="/assets/screen_1.jpg" alt="Deadhand Protocol gameplay screenshot" loading="eager">
+          <div class="media-card-copy">
+            <span class="tag">Featured release</span>
+            <h2>Deadhand Protocol</h2>
+            <p>Precision card tactics with a darker, premium presentation.</p>
+          </div>
+        </article>
+
+        <article class="media-card card">
+          <img src="/games/collapse-state/1.3.0.png" alt="Collapse State gameplay screenshot" loading="lazy">
+          <div class="media-card-copy">
+            <span class="tag">Roguelite systems</span>
+            <h3>Collapse State</h3>
+          </div>
+        </article>
+
+        <article class="media-card card">
+          <img src="/assets/screen_4.jpg" alt="Terminal Bastion gameplay screenshot" loading="lazy">
+          <div class="media-card-copy">
+            <span class="tag">Terminal strategy</span>
+            <h3>Terminal Bastion</h3>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-alt compact-section">
+      <div class="container proof-grid">
+        <article class="card compact-card">
+          <span class="tag">Portfolio</span>
+          <h3>4 original game universes</h3>
+          <p>Each project has a clearer fantasy, platform route, and long-term support surface.</p>
+        </article>
+        <article class="card compact-card">
+          <span class="tag">Communication</span>
+          <h3>Weekly dev updates</h3>
+          <p>Patch notes, changelogs, and rules pages stay easy to find and easy to read.</p>
+        </article>
+        <article class="card compact-card">
+          <span class="tag">Production</span>
+          <h3>Launch-ready presentation</h3>
+          <p>Players, press, and partners can reach the right page without digging through clutter.</p>
+        </article>
       </div>
     </section>
 
     <section class="section">
-      <div class="container grid">
-        <article class="card">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="tag">Featured portfolio</span>
+            <h2 class="page-title">A strategy-first lineup with stronger visual hierarchy.</h2>
+          </div>
+          <p class="page-lead">Each card now uses real game imagery so the portfolio feels like a studio showcase instead of a text-heavy landing page.</p>
+        </div>
+
+        <div class="showcase-grid showcase-grid-four">
+          <article class="showcase-card card">
+            <img class="showcase-image" src="/assets/screen_1.jpg" alt="Deadhand Protocol screenshot" loading="lazy">
+            <div class="showcase-content showcase-content-static">
+              <span class="tag">Card Tactics</span>
+              <h3>Deadhand Protocol</h3>
+              <p>Dark-fantasy encounters built around precision sequencing and decisive turns.</p>
+              <a class="button button-secondary" href="/games/deadhand-protocol/">Open game page</a>
+            </div>
+          </article>
+
+          <article class="showcase-card card">
+            <img class="showcase-image" src="/games/collapse-state/Artboard 2.png" alt="Collapse State screenshot" loading="lazy">
+            <div class="showcase-content showcase-content-static">
+              <span class="tag">Roguelite Systems</span>
+              <h3>Collapse State</h3>
+              <p>Procedural mission chains, escalating modifiers, and pressure-driven strategy.</p>
+              <a class="button button-secondary" href="/games/collapse-state.html">Open game page</a>
+            </div>
+          </article>
+
+          <article class="showcase-card card">
+            <img class="showcase-image" src="/assets/screen_4.jpg" alt="Terminal Bastion screenshot" loading="lazy">
+            <div class="showcase-content showcase-content-static">
+              <span class="tag">Terminal Strategy</span>
+              <h3>Terminal Bastion</h3>
+              <p>Single-player defense strategy tuned around planning, throughput, and control.</p>
+              <a class="button button-secondary" href="/games/terminal-bastion.html">Open game page</a>
+            </div>
+          </article>
+
+          <article class="showcase-card card">
+            <img class="showcase-image" src="/assets/screen_5.jpg" alt="Tenebris screenshot" loading="lazy">
+            <div class="showcase-content showcase-content-static">
+              <span class="tag">Atmospheric Puzzle</span>
+              <h3>Tenebris</h3>
+              <p>A quieter release for players who want focus, mood, and clean tactile play.</p>
+              <a class="button button-secondary" href="/games/tenebris.html">Open game page</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container grid grid-3col">
+        <article class="card card-elevated">
           <span class="tag">Production</span>
-          <h3>AAA-style pipeline</h3>
-          <p>From concept to post-launch, every project follows strict quality gates for design, UX, balance, and accessibility.</p>
+          <h3>Vertical-slice discipline</h3>
+          <p>We move from concept to launch through milestone gates that protect feel, readability, and technical stability before scale-up.</p>
         </article>
-        <article class="card">
-          <span class="tag">Technology</span>
-          <h3>System-first design</h3>
-          <p>Our gameplay stacks are tuned for tactical depth and replayability, with clear progression loops and high readability.</p>
+        <article class="card card-elevated">
+          <span class="tag">Design</span>
+          <h3>Systems that teach themselves</h3>
+          <p>Combat, progression, and information hierarchy are tuned so players can learn through play instead of fighting the interface.</p>
         </article>
-        <article class="card">
+        <article class="card card-elevated">
           <span class="tag">Community</span>
-          <h3>Direct communication</h3>
-          <p>Weekly updates, practical patch notes, and transparent iteration informed by real player behavior and feedback.</p>
+          <h3>Live support without noise</h3>
+          <p>Patch notes stay practical, changelogs stay readable, and player feedback feeds directly into scoped iteration.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container cta-banner card">
+        <div>
+          <span class="tag">For players, press, and partners</span>
+          <h2>Need the latest build context, studio info, or contact route?</h2>
+          <p>Browse the portfolio, dive into design notes, or reach the studio directly for press and partnership conversations.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="button button-primary" href="/games/index.html">Browse portfolio</a>
+          <a class="button button-secondary" href="/devlog/index.html">Read the devlog</a>
+          <a class="button button-secondary" href="mailto:contact@dtacraft.com">Contact the studio</a>
+        </div>
       </div>
     </section>
   </main>
