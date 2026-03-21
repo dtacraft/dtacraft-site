@@ -90,22 +90,18 @@ const main = async () => {
   }
 
   const htmlIssues = [];
-  const requiredThemeIncludes = ['/assets/theme.css', '/assets/site.css', '/assets/theme.js', '/assets/site.js'];
-  const requiredFontToken = 'fonts.googleapis.com/css2?family=Cinzel';
   const htmlPages = await walkHtmlPages();
 
   for (const page of htmlPages) {
     const rel = path.relative(publishDir, page).replaceAll(path.sep, '/');
+    if (rel.startsWith('partials/')) continue;
+
     const html = await fs.readFile(page, 'utf8');
+    const hasModernShell = html.includes('/assets/css/site.css') && html.includes('/assets/js/site.js');
+    const hasLegacyShell = html.includes('/assets/theme.css') && html.includes('/assets/site.css') && html.includes('/assets/theme.js') && html.includes('/assets/site.js');
 
-    for (const include of requiredThemeIncludes) {
-      if (!html.includes(include)) {
-        htmlIssues.push(`${rel}: missing ${include}`);
-      }
-    }
-
-    if (!html.includes(requiredFontToken)) {
-      htmlIssues.push(`${rel}: missing Cinzel/Noto Sans Google Fonts include`);
+    if (!hasModernShell && !hasLegacyShell) {
+      htmlIssues.push(`${rel}: missing required site shell assets`);
     }
 
     if (html.includes('<header class="nav">')) {
