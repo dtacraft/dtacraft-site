@@ -165,7 +165,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: grid;
   align-content: end;
 }
-.media-card img {
+.media-card > img {
   width: 100%;
   height: 100%;
   min-height: 220px;
@@ -188,6 +188,26 @@ img { max-width: 100%; height: auto; display: block; }
 .media-card-copy h3,
 .showcase-content h3 { margin: 0.25rem 0 0; }
 .media-card-copy p { margin-top: 0.35rem; color: rgba(242, 245, 255, 0.84); }
+
+.media-card-brand {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)), var(--surface-3);
+}
+.media-brand-visual {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  padding: 1.2rem;
+}
+.media-brand-visual img {
+  width: min(72%, 240px);
+  opacity: 0.82;
+}
+.media-card-brand-collapse {
+  background: radial-gradient(circle at top, rgba(117, 76, 255, 0.18), transparent 58%), linear-gradient(180deg, #19162a, #111522);
+}
+.media-card-brand-terminal {
+  background: radial-gradient(circle at top, rgba(62, 204, 255, 0.16), transparent 58%), linear-gradient(180deg, #10202b, #111522);
+}
 
 .proof-grid,
 .grid {
@@ -244,6 +264,29 @@ img { max-width: 100%; height: auto; display: block; }
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.showcase-card-brand {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)), var(--surface-3);
+}
+.showcase-brand-visual {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  padding: 1.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.showcase-brand-mark {
+  width: min(74%, 220px);
+  opacity: 0.86;
+}
+.showcase-card-brand-collapse .showcase-brand-visual {
+  background: radial-gradient(circle at top, rgba(117, 76, 255, 0.18), transparent 58%), linear-gradient(180deg, #19162a, #111522);
+}
+.showcase-card-brand-terminal .showcase-brand-visual {
+  background: radial-gradient(circle at top, rgba(62, 204, 255, 0.16), transparent 58%), linear-gradient(180deg, #10202b, #111522);
+}
+.showcase-card-brand-tenebris .showcase-brand-visual {
+  background: radial-gradient(circle at top, rgba(166, 166, 255, 0.16), transparent 58%), linear-gradient(180deg, #181724, #111522);
 }
 .showcase-content {
   position: relative;
@@ -325,7 +368,8 @@ img { max-width: 100%; height: auto; display: block; }
   }
 
   .media-card,
-  .media-card img { min-height: 220px; }
+  .media-card > img,
+  .media-brand-visual { min-height: 220px; }
 
   .showcase-card,
   .cta-banner,
